@@ -1,0 +1,57 @@
+name: virtual_exchange
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.19.0 <3.0.0"
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  logger:
+
+#  State Management
+  provider: ^6.0.5
+#  USe GetX for Utils
+  get: ^4.6.5
+
+
+# UI / Theme and Styles
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^2.0.7
+  carousel_slider: ^4.2.1
+  cached_network_image: ^3.2.3
+  fl_chart: ^0.63.0
+  skeletons: ^0.0.3
+  animated_text_kit: ^4.2.2
+  simple_animations: ^5.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/Svg/NavBar/
+    - assets/Svg/
+    - assets/Svg/VirtualExchangeIcons/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/Poppins-Font/Poppins-Regular.ttf
+        - asset: assets/Poppins-Font/Poppins-Medium.ttf
+        - asset: assets/Poppins-Font/Poppins-Bold.ttf
+          style: normal
+
