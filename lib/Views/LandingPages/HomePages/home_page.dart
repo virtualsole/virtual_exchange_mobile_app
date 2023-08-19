@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:virtual_exchange/Views/LandingPages/AppGlobleSettings/app_globle_settings.dart';
 import 'package:virtual_exchange/Widgets/HomePage/announcement_and_statics.dart';
 import 'package:virtual_exchange/Widgets/HomePage/image_slider.dart';
 import 'package:virtual_exchange/string_and_consts.dart';
@@ -27,7 +28,9 @@ class HomePage extends StatelessWidget {
                 backgroundColor: Colors.white,
                 child: Icon(Icons.person),
               ),
-              const Text("Login or Register").paddingOnly(left: 10),
+              GestureDetector(
+                  onTap: () => Get.to(() => const AppGlobalSettings()),
+                  child: const Text("Login or Register").paddingOnly(left: 10)),
               const Expanded(child: SizedBox.shrink()),
               const Icon(Icons.search).paddingOnly(left: 10),
               const Icon(Icons.qr_code).paddingOnly(left: 10),
@@ -66,7 +69,7 @@ class HomePage extends StatelessWidget {
             ).paddingSymmetric(horizontal: 10, vertical: 15),
           ),
           Container(
-            height: 200,
+            height: MediaQuery.of(context).size.height * .23,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: AppColors.themeColor,
@@ -87,7 +90,7 @@ class HomePage extends StatelessWidget {
                 AnnouncementValues("1 Vusd", ImageRes.oneVUsd),
                 AnnouncementValues("Spot Trading", ImageRes.spotTrading),
                 AnnouncementValues("P2P", ImageRes.p2p),
-                AnnouncementValues("Futures", ImageRes.announcementFutures),
+                AnnouncementValues("Futures", ImageRes.future),
                 AnnouncementValues("Order", ImageRes.order),
                 AnnouncementValues("Help Center", ImageRes.chatSupport),
               ]
@@ -104,11 +107,12 @@ class HomePage extends StatelessWidget {
                             e.imageRes,
                             height: 30,
                             width: 30,
-                            color: AppColors.greenColor,
+                            color: Colors.white,
                             fit: BoxFit.fill,
-                          ),
+                          ).paddingAll(5),
                         ),
-                        Text(e.title, style: Theme.of(context).textTheme.bodySmall)
+                        Text(e.title,
+                            style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 10))
                       ],
                     ),
                   )

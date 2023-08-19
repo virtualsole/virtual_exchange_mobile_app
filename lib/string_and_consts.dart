@@ -25,15 +25,17 @@ class ImageRes {
   static String chatSupport = "assets/Svg/VirtualExchangeIcons/Chat.svg";
   static String spotTrading = "assets/Svg/VirtualExchangeIcons/Spot Trading.svg";
   static String p2p = "assets/Svg/VirtualExchangeIcons/p2p.svg";
+  static String future = "assets/Svg/NavBar/future.svg";
 
-  static String announcementFutures = "assets/Svg/VirtualExchangeIcons/futures.svg";
-  static String announcementSpotTrading = "assets/Svg/VirtualExchangeIcons/spot_trading.svg";
+  ///
   static String tradeIcon = "assets/Svg/trade_icon.svg";
   static String doubleTradeIcon = "assets/Svg/double_trade_icon.svg";
   static String arrowUp = "assets/Svg/Arrow_up.svg";
   static String arrowDown = "assets/Svg/Arrow_down.svg";
   static String menuIcon = "assets/Svg/Menu_Icon.svg";
   static String filterIcon = "assets/Svg/Filter_Icon.svg";
+  static String plusIcon = "assets/Svg/Plus_Icon.svg";
+  static String web3Wallet = "assets/Svg/web3_wallet.svg";
 }
 
 class AppColors {
@@ -47,4 +49,8 @@ class AppColors {
   static Color scaffoldBackgroundColor = const Color(0xff0C0C0C);
   static Color greyText = const Color(0xff979697);
   static Color redColor = const Color(0xffF74243);
+}
+
+class AppConst {
+  static const appName = "Virtual Exchange";
 }

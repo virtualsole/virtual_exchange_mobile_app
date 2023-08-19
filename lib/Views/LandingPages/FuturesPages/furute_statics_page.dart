@@ -2,19 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:virtual_exchange/Views/AuthPages/auth_page.dart';
+import 'package:virtual_exchange/Views/LandingPages/FuturesPages/margin_mode.dart';
 import 'package:virtual_exchange/Widgets/app_button.dart';
+import 'package:virtual_exchange/Widgets/app_mode_bottoml_sheet.dart';
 import 'package:virtual_exchange/Widgets/buy_or_sell_button.dart';
+import 'package:virtual_exchange/Widgets/dropdown_button.dart';
 import 'package:virtual_exchange/Widgets/wrap_icon.dart';
 import 'package:virtual_exchange/string_and_consts.dart';
 
-class SpotTradingBuyOrSell extends StatefulWidget {
-  const SpotTradingBuyOrSell({super.key});
+import '/Widgets/HomePage/listenable_text.dart';
+
+class FutureStaticsPage extends StatefulWidget {
+  const FutureStaticsPage({super.key});
 
   @override
-  State<SpotTradingBuyOrSell> createState() => _SpotTradingBuyOrSellState();
+  State<FutureStaticsPage> createState() => _FutureStaticsPageState();
 }
 
-class _SpotTradingBuyOrSellState extends State<SpotTradingBuyOrSell> {
+class _FutureStaticsPageState extends State<FutureStaticsPage> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -24,6 +29,41 @@ class _SpotTradingBuyOrSellState extends State<SpotTradingBuyOrSell> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        "Funding",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(color: AppColors.greyText, fontSize: 10),
+                      ),
+                      Text(
+                        "-0.0011%",
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 10),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        "Countdown",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(color: AppColors.greyText, fontSize: 10),
+                      ),
+                      Text(
+                        "02:30:30",
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 10),
+                      ),
+                    ],
+                  ),
+                ],
+              ).paddingOnly(top: 10, left: 5, right: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -64,8 +104,52 @@ class _SpotTradingBuyOrSellState extends State<SpotTradingBuyOrSell> {
                     ],
                   ),
                 ],
-              ).paddingAll(20),
-              const Expanded(child: SizedBox()),
+              ).paddingOnly(top: 10, left: 5, right: 5),
+              Expanded(
+                  child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int index) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ListenableText("34353.0", AppColors.redColor),
+                      const ListenableText("3.0K", Colors.white),
+                    ],
+                  ).paddingOnly(right: 20, left: 10).paddingSymmetric(vertical: 2);
+                },
+              )),
+              Column(
+                children: [
+                  Text(
+                    "259117",
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.greenColor,
+                          fontSize: 10,
+                        ),
+                  ),
+                  Text(
+                    "259117",
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppColors.greyText,
+                          fontSize: 10,
+                        ),
+                  ),
+                ],
+              ).paddingSymmetric(vertical: 5),
+              Expanded(
+                  child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int index) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ListenableText("34353.0", AppColors.greenColor),
+                      const ListenableText("3.0K", Colors.white),
+                    ],
+                  ).paddingOnly(right: 20, left: 10).paddingSymmetric(vertical: 2);
+                },
+              )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -94,7 +178,29 @@ class _SpotTradingBuyOrSellState extends State<SpotTradingBuyOrSell> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const BuyOrSellButton(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppDropDownButton(
+                      "Cross",
+                      onTap: () {
+                        appBottomSheet(MarginMode());
+                      },
+                    ),
+                    const AppDropDownButton("150X"),
+                    WrapIcon(
+                      child: SvgPicture.asset(
+                        ImageRes.plusIcon,
+                        color: Colors.white,
+                        height: 20,
+                        width: 20,
+                      ),
+                    ),
+                  ],
+                ).paddingOnly(bottom: 5),
+                const BuyOrSellButton(
+                  values: ["Open", "Close"],
+                ),
                 Container(
                   decoration: BoxDecoration(
                     color: AppColors.themeColor,
@@ -127,7 +233,6 @@ class _SpotTradingBuyOrSellState extends State<SpotTradingBuyOrSell> {
                     ],
                   ).paddingAll(10),
                 ).paddingOnly(bottom: 5),
-                AmountAndTotalSelection((String value) {}).paddingOnly(bottom: 5),
                 Container(
                   decoration: BoxDecoration(
                     color: AppColors.themeColor,
@@ -140,7 +245,7 @@ class _SpotTradingBuyOrSellState extends State<SpotTradingBuyOrSell> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("-"),
-                      Text("Amount(ET)", style: Theme.of(context).textTheme.bodySmall),
+                      Text("Amount(USDT)", style: Theme.of(context).textTheme.bodySmall),
                       const Text("+"),
                     ],
                   ).paddingAll(10),
@@ -150,7 +255,17 @@ class _SpotTradingBuyOrSellState extends State<SpotTradingBuyOrSell> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Avbl", style: Theme.of(context).textTheme.bodySmall),
-                    Text("-USDT", style: Theme.of(context).textTheme.bodySmall),
+                    Text("--", style: Theme.of(context).textTheme.bodySmall),
+                  ],
+                ).paddingSymmetric(vertical: 2.5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Checkbox(
+                      value: false,
+                      onChanged: (bool? value) {},
+                    ),
+                    Text("TP/SL", style: Theme.of(context).textTheme.bodySmall)
                   ],
                 ),
                 AppButton("Login", onTap: () {

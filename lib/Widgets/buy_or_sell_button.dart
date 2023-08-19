@@ -3,7 +3,8 @@ import 'package:virtual_exchange/Widgets/BuyOrSellButton/flutter_toggle_tab.dart
 import 'package:virtual_exchange/string_and_consts.dart';
 
 class BuyOrSellButton extends StatefulWidget {
-  const BuyOrSellButton({super.key});
+  final List<String> values;
+  const BuyOrSellButton({this.values = const ["Buy", "Sell"], super.key});
 
   @override
   State<BuyOrSellButton> createState() => _BuyOrSellButtonState();
@@ -15,6 +16,7 @@ class _BuyOrSellButtonState extends State<BuyOrSellButton> {
   Widget build(BuildContext context) {
     return ToggleButton(
       width: 50,
+      height: 30,
       borderRadius: 5,
       selectedTextStyle: Theme.of(context)
           .textTheme
@@ -25,7 +27,7 @@ class _BuyOrSellButtonState extends State<BuyOrSellButton> {
         AppColors.primaryColor,
       ],
       unSelectedTextStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
-      labels: ["Buy", "Sell"],
+      labels: widget.values,
       selectedIndex: index,
       selectedLabelIndex: (index) {
         setState(() {

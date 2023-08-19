@@ -7,6 +7,7 @@ class AppButton extends StatelessWidget {
   final Widget? prefix;
   final Widget? suffix;
   final Color? buttonColor;
+  final Color? titleColor;
 
   const AppButton(
     this.title, {
@@ -14,6 +15,7 @@ class AppButton extends StatelessWidget {
     this.onTap,
     this.prefix,
     this.suffix,
+    this.titleColor,
     super.key,
   });
 
@@ -36,7 +38,7 @@ class AppButton extends StatelessWidget {
               if (prefix != null) prefix!,
               Text(
                 title,
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: titleColor ?? Colors.white),
               ),
               if (suffix != null) suffix!,
             ],

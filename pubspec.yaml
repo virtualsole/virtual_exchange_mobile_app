@@ -19,6 +19,7 @@ dependencies:
   provider: ^6.0.5
 #  USe GetX for Utils
   get: ^4.6.5
+  get_storage: ^2.1.1
 
 
 # UI / Theme and Styles
@@ -45,6 +46,7 @@ flutter:
     - assets/
     - assets/Svg/NavBar/
     - assets/Svg/
+    - assets/Png/
     - assets/Svg/VirtualExchangeIcons/
 
   fonts:

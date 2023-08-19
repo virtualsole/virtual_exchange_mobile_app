@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:virtual_exchange/Widgets/progress_bar.dart';
 import 'package:virtual_exchange/string_and_consts.dart';
@@ -60,7 +61,7 @@ class _FutureTabPageState extends State<FutureTabPage> {
               children: [
                 const Text("Name"),
                 upDownIcon(),
-                const Text("Vol"),
+                const Text("Vol").paddingOnly(left: 10),
                 upDownIcon(),
               ],
             ),
@@ -142,9 +143,22 @@ class _FutureTabPageState extends State<FutureTabPage> {
   }
 
   Widget upDownIcon() {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
-      children: [Icon(Icons.arrow_drop_up_outlined), Icon(Icons.arrow_drop_down_outlined)],
+      children: [
+        SvgPicture.asset(
+          ImageRes.arrowUp,
+          height: 10,
+          width: 10,
+          color: Colors.white,
+        ),
+        SvgPicture.asset(
+          ImageRes.arrowDown,
+          height: 10,
+          width: 10,
+          color: Colors.white,
+        ),
+      ],
     );
   }
 }
