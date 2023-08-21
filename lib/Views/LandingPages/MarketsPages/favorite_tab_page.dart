@@ -16,7 +16,9 @@ class _FavoriteTabPageState extends State<FavoriteTabPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: AppColors.themeColor),
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColorLight,
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

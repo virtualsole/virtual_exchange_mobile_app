@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:virtual_exchange/Views/LandingPages/WalletsPages/web3_wallet.dart';
-import 'package:virtual_exchange/string_and_consts.dart';
 
 import 'super_wallet.dart';
 
@@ -30,7 +29,7 @@ class _WalletPageState extends State<WalletPage> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: initValue == e ? AppColors.themeColor : null,
+                          color: initValue == e ? Theme.of(context).primaryColorLight : null,
                           borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(10), bottomRight: Radius.circular(10))),
                       child: Text(

@@ -12,9 +12,9 @@ class SuperWalletPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: AppColors.themeColor,
+          color: Theme.of(context).primaryColorLight,
           borderRadius:
-              BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))),
+              const BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

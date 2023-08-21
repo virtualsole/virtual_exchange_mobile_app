@@ -39,8 +39,6 @@ class ImageRes {
 }
 
 class AppColors {
-  static int themeColorCode = 0xff1D2129;
-  static Color themeColor = Color(themeColorCode);
   static int primaryColorCode = 0xff00A5FF;
   static Color primaryColor = Color(primaryColorCode);
   static Color secondaryColor = (Colors.orangeAccent);

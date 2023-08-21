@@ -30,7 +30,8 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
         children: [
           Container(
             decoration: BoxDecoration(
-                color: AppColors.themeColor, borderRadius: BorderRadius.circular(100)),
+                color: Theme.of(context).primaryColorLight,
+                borderRadius: BorderRadius.circular(100)),
             child: Row(
               children: [
                 const Icon(Icons.search).paddingOnly(right: 20),

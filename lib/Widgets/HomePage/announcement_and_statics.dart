@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:virtual_exchange/Widgets/chart.dart';
 import 'package:virtual_exchange/Widgets/common.dart';
-import 'package:virtual_exchange/string_and_consts.dart';
 
 class AnnouncementAndStatics extends StatelessWidget {
   const AnnouncementAndStatics({super.key});
@@ -12,7 +11,7 @@ class AnnouncementAndStatics extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.themeColor,
+        color: Theme.of(context).primaryColorLight,
       ),
       child: Column(
         children: [

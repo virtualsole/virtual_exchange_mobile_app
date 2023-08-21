@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -57,9 +59,9 @@ class _TradePageState extends State<TradePage> with SingleTickerProviderStateMix
                 const Icon(Icons.more_vert, size: 20),
               ],
             ).paddingOnly(right: 10),
-            SizedBox(height: Get.height * .45, child: SpotTradingBuyOrSell()),
-            OpenOrOrderSelection(),
-            NoInfoFound()
+            SizedBox(height: Get.height * .45, child: const SpotTradingBuyOrSell()),
+            const OpenOrOrderSelection(),
+            const NoInfoFound()
           ],
         ),
       ),

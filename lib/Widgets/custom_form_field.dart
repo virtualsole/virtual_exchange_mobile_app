@@ -72,7 +72,7 @@ class _AppFormFieldState extends State<AppFormField> {
                   widget.hintStyle ?? const TextStyle(color: Color(0xffBFBFBF), fontSize: 12),
               isDense: true,
               filled: true,
-              fillColor: AppColors.themeColor,
+              fillColor: Theme.of(context).primaryColorLight,
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5), borderSide: BorderSide.none),
               enabledBorder: OutlineInputBorder(

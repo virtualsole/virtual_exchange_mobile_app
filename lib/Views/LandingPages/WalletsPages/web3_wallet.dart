@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -13,9 +15,9 @@ class Web3WalletPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: AppColors.themeColor,
+          color: Theme.of(context).primaryColorLight,
           borderRadius:
-              BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))),
+              const BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

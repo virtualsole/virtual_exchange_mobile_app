@@ -13,6 +13,7 @@ class NoInfoFound extends StatelessWidget {
         children: [
           SvgPicture.asset(
             ImageRes.noInformationFound,
+            // ignore: deprecated_member_use
             color: Colors.grey,
             height: 100,
             width: 100,

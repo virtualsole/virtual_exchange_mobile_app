@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -49,7 +51,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         .bodyLarge
                         ?.copyWith(fontWeight: FontWeight.bold))
                 .paddingOnly(bottom: 20),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

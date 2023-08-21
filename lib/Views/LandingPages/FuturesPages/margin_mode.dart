@@ -46,16 +46,15 @@ class _MarginModeState extends State<MarginMode> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(
-                        .3,
-                      ),
+                      color: initValue == e
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context).primaryColor.withOpacity(.5),
                     ),
                     child: Text(
                       e,
                       style: Theme.of(
                         context,
-                      ).textTheme.bodySmall?.copyWith(
-                          color: initValue == e ? Colors.white : Colors.grey.withOpacity(.5)),
+                      ).textTheme.bodySmall?.copyWith(color: Colors.white),
                     ).paddingSymmetric(horizontal: 20, vertical: 5),
                   ),
                 ),

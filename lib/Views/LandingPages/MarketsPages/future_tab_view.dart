@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_utils/get_utils.dart';
@@ -18,7 +20,7 @@ class _FutureTabPageState extends State<FutureTabPage> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: AppColors.themeColor,
+          color: Theme.of(context).primaryColorLight,
           borderRadius:
               const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))),
       child: Column(
@@ -105,7 +107,7 @@ class _FutureTabPageState extends State<FutureTabPage> {
                           ],
                         ),
                       ),
-                      Text("Total: 332.5M"),
+                      const Text("Total: 332.5M"),
                     ],
                   ),
                   title: Column(

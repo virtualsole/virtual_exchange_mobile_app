@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:virtual_exchange/string_and_consts.dart';
 
 class WrapIcon extends StatelessWidget {
   final Widget? child;
@@ -10,7 +9,7 @@ class WrapIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.themeColor,
+        color: Theme.of(context).primaryColorLight,
         borderRadius: BorderRadius.circular(2.5),
       ),
       child: child?.paddingAll(5),

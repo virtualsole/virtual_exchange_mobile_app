@@ -43,7 +43,7 @@ class LoginPage extends StatelessWidget {
                 color: Colors.grey.withOpacity(.3),
               ),
             ),
-            child: Text("Normal Login").paddingSymmetric(horizontal: 10, vertical: 5),
+            child: const Text("Normal Login").paddingSymmetric(horizontal: 10, vertical: 5),
           ).paddingOnly(bottom: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,7 +81,7 @@ class LoginPage extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Get.to(() => ForgetPasswordPage());
+              Get.to(() => const ForgetPasswordPage());
             },
             child: Text(
               "Forget Password?",

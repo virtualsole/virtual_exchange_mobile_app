@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:virtual_exchange/string_and_consts.dart';
 
 class AppDropDownButton extends StatelessWidget {
   final String title;
@@ -15,7 +14,7 @@ class AppDropDownButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
-          color: AppColors.themeColor,
+          color: Theme.of(context).primaryColorLight,
         ),
         child: Row(
           children: [
@@ -27,7 +26,7 @@ class AppDropDownButton extends StatelessWidget {
                     fontSize: 10,
                   ),
             ),
-            Icon(Icons.arrow_drop_down)
+            const Icon(Icons.arrow_drop_down)
           ],
         ).paddingSymmetric(vertical: 5, horizontal: 7.5),
       ),

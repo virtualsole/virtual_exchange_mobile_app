@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -97,7 +99,7 @@ class _SpotTradingBuyOrSellState extends State<SpotTradingBuyOrSell> {
                 const BuyOrSellButton(),
                 Container(
                   decoration: BoxDecoration(
-                    color: AppColors.themeColor,
+                    color: Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
                       color: Colors.white,
@@ -114,7 +116,7 @@ class _SpotTradingBuyOrSellState extends State<SpotTradingBuyOrSell> {
                 ).paddingSymmetric(vertical: 5),
                 Container(
                   decoration: BoxDecoration(
-                    color: AppColors.themeColor,
+                    color: Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
                       color: Colors.white,
@@ -130,7 +132,7 @@ class _SpotTradingBuyOrSellState extends State<SpotTradingBuyOrSell> {
                 AmountAndTotalSelection((String value) {}).paddingOnly(bottom: 5),
                 Container(
                   decoration: BoxDecoration(
-                    color: AppColors.themeColor,
+                    color: Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
                       color: Colors.white,
@@ -179,7 +181,7 @@ class _AmountAndTotalSelectionState extends State<AmountAndTotalSelection> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.themeColor,
+        color: Theme.of(context).primaryColorLight,
         borderRadius: BorderRadius.circular(5),
         border: Border.all(
           color: Colors.white,

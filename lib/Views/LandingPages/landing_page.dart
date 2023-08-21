@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -76,7 +78,7 @@ class _LandingPageState extends State<LandingPage> {
           showUnselectedLabels: true,
         ),
         body: PageView(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           controller: Provider.of<HomePageProvider>(context, listen: false).homePageCtrl,
           children: screens,
           onPageChanged: (int index) {

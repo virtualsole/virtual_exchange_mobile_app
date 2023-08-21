@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -40,7 +42,7 @@ class HomePage extends StatelessWidget {
           const ImageSlider(),
           const AnnouncementAndStatics().paddingOnly(bottom: 10),
           Container(
-            decoration: BoxDecoration(color: AppColors.themeColor),
+            decoration: BoxDecoration(color: Theme.of(context).primaryColorLight),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -50,7 +52,7 @@ class HomePage extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .headlineMedium
-                            ?.copyWith(fontWeight: FontWeight.w700, color: Colors.white)),
+                            ?.copyWith(fontWeight: FontWeight.w700)),
                     Container(
                       decoration: BoxDecoration(
                           color: AppColors.greenColor, borderRadius: BorderRadius.circular(50)),
@@ -72,7 +74,7 @@ class HomePage extends StatelessWidget {
             height: MediaQuery.of(context).size.height * .23,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              color: AppColors.themeColor,
+              color: Theme.of(context).primaryColorLight,
             ),
             child: GridView.count(
               primary: false,
@@ -100,14 +102,14 @@ class HomePage extends StatelessWidget {
                         Container(
                           decoration: BoxDecoration(
                               border: Border.all(
-                                color: Colors.white,
+                                color: Theme.of(context).dividerColor,
                               ),
                               borderRadius: BorderRadius.circular(100)),
                           child: SvgPicture.asset(
                             e.imageRes,
                             height: 30,
                             width: 30,
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             fit: BoxFit.fill,
                           ).paddingAll(5),
                         ),
@@ -121,7 +123,7 @@ class HomePage extends StatelessWidget {
           ).paddingSymmetric(vertical: 10),
           Container(
             decoration: BoxDecoration(
-              color: AppColors.themeColor,
+              color: Theme.of(context).primaryColorLight,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

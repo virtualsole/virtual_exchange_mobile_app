@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -184,7 +186,7 @@ class _FutureStaticsPageState extends State<FutureStaticsPage> {
                     AppDropDownButton(
                       "Cross",
                       onTap: () {
-                        appBottomSheet(MarginMode());
+                        appBottomSheet(const MarginMode());
                       },
                     ),
                     const AppDropDownButton("150X"),
@@ -203,7 +205,7 @@ class _FutureStaticsPageState extends State<FutureStaticsPage> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: AppColors.themeColor,
+                    color: Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
                       color: Colors.white,
@@ -220,7 +222,7 @@ class _FutureStaticsPageState extends State<FutureStaticsPage> {
                 ).paddingSymmetric(vertical: 5),
                 Container(
                   decoration: BoxDecoration(
-                    color: AppColors.themeColor,
+                    color: Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
                       color: Colors.white,
@@ -235,7 +237,7 @@ class _FutureStaticsPageState extends State<FutureStaticsPage> {
                 ).paddingOnly(bottom: 5),
                 Container(
                   decoration: BoxDecoration(
-                    color: AppColors.themeColor,
+                    color: Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
                       color: Colors.white,
@@ -282,6 +284,7 @@ class _FutureStaticsPageState extends State<FutureStaticsPage> {
 
 class AmountAndTotalSelection extends StatefulWidget {
   final ValueChanged<String> valueChange;
+
   const AmountAndTotalSelection(this.valueChange, {super.key});
 
   @override
@@ -290,11 +293,12 @@ class AmountAndTotalSelection extends StatefulWidget {
 
 class _AmountAndTotalSelectionState extends State<AmountAndTotalSelection> {
   String buttonValue = "amount";
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.themeColor,
+        color: Theme.of(context).primaryColorLight,
         borderRadius: BorderRadius.circular(5),
         border: Border.all(
           color: Colors.white,

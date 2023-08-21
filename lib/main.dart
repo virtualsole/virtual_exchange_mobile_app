@@ -23,7 +23,7 @@ void main() async {
 
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
-            theme: globalProvider.isDarkMode ? globalProvider.darkTheme : globalProvider.lightTheme,
+            theme: globalProvider.themeData,
             home: const SplashScreen(),
           );
         },

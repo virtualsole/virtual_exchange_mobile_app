@@ -31,7 +31,7 @@ class _AppProgressBarState extends State<AppProgressBar> {
                 height: 15,
                 decoration: BoxDecoration(
                   color: AppColors.greenColor,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(2.5),
                     bottomLeft: Radius.circular(2.5),
                   ),

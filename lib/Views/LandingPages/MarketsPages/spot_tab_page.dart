@@ -17,7 +17,7 @@ class _SpotTabPageState extends State<SpotTabPage> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: AppColors.themeColor,
+          color: Theme.of(context).primaryColorLight,
           borderRadius:
               const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))),
       child: Column(
@@ -104,7 +104,7 @@ class _SpotTabPageState extends State<SpotTabPage> {
                           ],
                         ),
                       ),
-                      Text("Total: 332.5M"),
+                      const Text("Total: 332.5M"),
                     ],
                   ),
                   title: Column(

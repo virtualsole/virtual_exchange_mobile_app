@@ -46,6 +46,7 @@ class ToggleButton extends StatefulWidget {
   final bool isShadowEnable;
 
   @override
+  // ignore: library_private_types_in_public_api
   _ToggleButtonState createState() => _ToggleButtonState();
 }
 
