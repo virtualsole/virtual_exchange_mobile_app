@@ -488,7 +488,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField> with TickerProvider
   @override
   void dispose() {
     if (widget.autoDisposeControllers) {
-      _textEditingController!.dispose();
+      // _textEditingController!.dispose();
       _focusNode!.dispose();
     }
 

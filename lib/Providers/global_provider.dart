@@ -38,7 +38,7 @@ class GlobalProvider extends ChangeNotifier {
         }),
         appBarTheme: AppBarTheme(
           centerTitle: false,
-          // backgroundColor: themeColor,
+          backgroundColor: Colors.black,
           elevation: 0,
           iconTheme: IconThemeData(
             color: AppColors.primaryColor,
@@ -95,7 +95,6 @@ class GlobalProvider extends ChangeNotifier {
     if (isDarkMode == false) {
       AppStorage.box.write(AppStorage.darkMode, true);
     } else {
-      // themeColor = Colors.grey.withOpacity(.2);
       AppStorage.box.write(AppStorage.darkMode, false);
     }
     getThemeFormLocal();

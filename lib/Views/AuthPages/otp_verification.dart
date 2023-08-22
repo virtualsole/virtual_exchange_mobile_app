@@ -35,7 +35,7 @@ class OtpVerification extends StatelessWidget {
                     else if (v.length < 6) {
                       return "invalid";
                     }
-                    ;
+
                     return null;
                   },
                   appContext: context,

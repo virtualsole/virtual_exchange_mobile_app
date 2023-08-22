@@ -39,12 +39,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
           ),
         ).paddingSymmetric(vertical: 20, horizontal: 10),
         appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.cancel_outlined, color: Colors.white),
-            onPressed: () {
-              Get.back();
-            },
-          ),
           actions: [
             TextButton(
               onPressed: () {

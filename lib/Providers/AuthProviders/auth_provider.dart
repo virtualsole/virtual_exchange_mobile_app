@@ -39,6 +39,8 @@ class AuthProvider extends ChangeNotifier {
           bodyFields: {'api_key': appKeys.apiKey, 'email': emailCtrl.text});
       stopProgress();
 
+      showMessage(response);
+
       logger.i(response);
       if (response.contains("success")) {
         return true;
@@ -70,6 +72,7 @@ class AuthProvider extends ChangeNotifier {
 
       showMessage(response);
     } on Exception catch (e) {
+      logger.e(e);
       stopProgress();
     }
   }
@@ -88,6 +91,7 @@ class AuthProvider extends ChangeNotifier {
     );
 
     logger.i(response);
+    showMessage(response);
 
     if (response.isEmpty) return;
   }
@@ -117,5 +121,7 @@ class AuthProvider extends ChangeNotifier {
   void getUserInfo() async {
     final response = await ApiService.getMethod(
         url: ApiUrls.GET_USER_INFO, bodyFields: {'api_key': appKeys.apiKey, "user_id": userID});
+    showMessage(response);
+    logger.i(response);
   }
 }
