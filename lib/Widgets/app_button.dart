@@ -24,14 +24,16 @@ class AppButton extends StatelessWidget {
     return ElevatedButton(
         onPressed: onTap,
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith((states) {
-            return onTap != null
-                ? (buttonColor ?? AppColors.primaryColor)
-                : AppColors.primaryColor.withOpacity(.3);
-          }),
+          backgroundColor: MaterialStateProperty.resolveWith(
+            (states) {
+              return onTap != null
+                  ? (buttonColor ?? AppColors.primaryColor)
+                  : AppColors.primaryColor.withOpacity(.3);
+            },
+          ),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 0),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

@@ -4,7 +4,8 @@ import 'package:logger/logger.dart';
 Logger logger = Logger();
 
 class ImageRes {
-  static String appLogo = "";
+  static String appLogo = "assets/appLogo.png";
+  static String appLogoAndText = "assets/AppLogoWithText.png";
   static String noInformationFound = "assets/Svg/no_info_found.svg";
 
   /// Navigation Bar

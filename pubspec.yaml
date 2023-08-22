@@ -32,9 +32,18 @@ dependencies:
   animated_text_kit: ^4.2.2
   simple_animations: ^5.0.2
 
+# Network Call
+  http: ^1.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/appLogo.png"
+  min_sdk_android: 21
+
 
   flutter_lints: ^2.0.0
 

@@ -43,7 +43,7 @@ class Web3WalletPage extends StatelessWidget {
           ).paddingOnly(bottom: 30),
           TextButton(
             onPressed: () {
-              Get.to(() => const LoginPage());
+              Get.to(() => LoginPage());
             },
             child: Text(
               "Login Now",

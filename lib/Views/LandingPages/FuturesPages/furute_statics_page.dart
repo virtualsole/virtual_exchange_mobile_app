@@ -271,7 +271,7 @@ class _FutureStaticsPageState extends State<FutureStaticsPage> {
                   ],
                 ),
                 AppButton("Login", onTap: () {
-                  Get.to(() => const LoginPage());
+                  Get.to(() => LoginPage());
                 }),
               ],
             ).paddingSymmetric(horizontal: 20),

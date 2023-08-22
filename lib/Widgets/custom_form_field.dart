@@ -68,11 +68,10 @@ class _AppFormFieldState extends State<AppFormField> {
                     : const SizedBox.shrink(),
               ),
               hintText: widget.hintText,
-              hintStyle:
-                  widget.hintStyle ?? const TextStyle(color: Color(0xffBFBFBF), fontSize: 12),
+              hintStyle: TextStyle(color: Colors.black),
               isDense: true,
               filled: true,
-              fillColor: Theme.of(context).primaryColorLight,
+              fillColor: Colors.grey.withOpacity(.3),
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5), borderSide: BorderSide.none),
               enabledBorder: OutlineInputBorder(

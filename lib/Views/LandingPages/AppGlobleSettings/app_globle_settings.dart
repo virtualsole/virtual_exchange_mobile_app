@@ -53,7 +53,7 @@ class AppGlobalSettings extends StatelessWidget {
                 child: AppButton(
                   "Log In or Register",
                   onTap: () => Get.to(
-                    () => const LoginPage(),
+                    () => LoginPage(),
                   ),
                 ),
               ),

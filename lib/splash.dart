@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:virtual_exchange/Views/LandingPages/landing_page.dart';
+import 'package:virtual_exchange/Widgets/image_handler.dart';
+import 'package:virtual_exchange/string_and_consts.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   initState() {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (BuildContext context) {
@@ -26,9 +28,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Icon(Icons.track_changes, size: 80),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(ImageRes.appLogoAndText),
+          ),
+        ),
       ),
     );
   }

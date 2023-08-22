@@ -65,7 +65,7 @@ class SuperWalletPage extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Get.to(() => const LoginPage());
+                  Get.to(() => LoginPage());
                 },
                 child: Text(
                   "Import wallet",
