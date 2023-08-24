@@ -33,7 +33,8 @@ void stopProgress() {
 void showMessage(String data) {
   bool error = false;
   final jd = json.decode(data);
-  String message = jd["showableMessage"] ?? "Something Went Wrong";
+  String? message = jd["showableMessage"];
+  if (message == null) return;
   if (jd["status"] == "fail") {
     error = true;
   }

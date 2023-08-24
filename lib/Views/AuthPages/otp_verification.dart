@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virtual_exchange/Plugins/PinField/OtpInput/pin_code_fields.dart';
 import 'package:virtual_exchange/Providers/AuthProviders/auth_provider.dart';
+import 'package:virtual_exchange/Providers/providers.dart';
+import 'package:virtual_exchange/Services/HttpServices/api_key.dart';
+import 'package:virtual_exchange/Views/LandingPages/landing_page.dart';
 import 'package:virtual_exchange/Widgets/app_button.dart';
 import 'package:get/get.dart';
+import 'package:virtual_exchange/string_and_consts.dart';
 
 class OtpVerification extends StatelessWidget {
-  OtpVerification({super.key});
+  final bool forLogin;
+
+  OtpVerification({this.forLogin = false, super.key});
 
   final formKey = GlobalKey<FormState>();
 
@@ -57,10 +63,27 @@ class OtpVerification extends StatelessWidget {
                 ],
               ).paddingOnly(bottom: 30),
               AppButton(
-                "Register",
-                onTap: () {
+                forLogin ? "Login" : "Register",
+                onTap: () async {
                   if (formKey.currentState!.validate()) {
-                    value.registerUser();
+                    /// Register
+                    if (!forLogin)
+                      await value.registerUser().then(
+                        (value) {
+                          if (value) {
+                            Get.offAll(LandingPage());
+                          }
+                        },
+                      );
+                    else {
+                      await value.loginUser().then(
+                        (value) {
+                          if (value) {
+                            Get.offAll(LandingPage());
+                          }
+                        },
+                      );
+                    }
                   }
                 },
               )

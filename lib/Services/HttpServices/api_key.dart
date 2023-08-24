@@ -1,7 +1,20 @@
+import 'package:virtual_exchange/Models/AuthModels/UserModel.dart';
+import 'package:virtual_exchange/Models/AuthModels/registration_response.dart';
+import 'package:virtual_exchange/Models/AuthModels/user_profile_response.dart';
+import 'package:virtual_exchange/Services/StorageServices/get_storage.dart';
+
 class AppKeys {
   String get apiKey {
-    String apiKey = "28b4b56939b14fdf30bcefeb3e935193b0f07ce22523ab5d32afcf3f4151edc0";
-
-    return apiKey;
+    return "28b4b56939b14fdf30bcefeb3e935193b0f07ce22523ab5d32afcf3f4151edc0";
   }
+
+  String? get userID {
+    return userIdModelFromJson(AppStorage.box.read(AppStorage.USER_ID)).data?.userId;
+  }
+
+  User? get userData {
+    return userProfileResponseFromJson(AppStorage.box.read(AppStorage.USER_DATA)).userData;
+  }
+
+  String LOGIN_VERIFICATION = 'login_verification';
 }

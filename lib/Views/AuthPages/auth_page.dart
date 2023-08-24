@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
+import 'package:virtual_exchange/Services/HttpServices/api_key.dart';
 import 'package:virtual_exchange/Views/AuthPages/forget_password_page.dart';
 import 'package:virtual_exchange/Views/AuthPages/otp_verification.dart';
 import 'package:virtual_exchange/Views/AuthPages/register_page.dart';
@@ -108,20 +109,20 @@ class LoginPage extends StatelessWidget {
                     ?.copyWith(fontWeight: FontWeight.w700, color: AppColors.secondaryColor),
               ),
             ),
-            AppFormField(
-              hintText: "Please Enter Your Password",
-              isPasswordField: true,
-            ),
             Padding(
               padding: const EdgeInsets.only(top: 30),
               child: AppButton(
                 "Login",
                 onTap: () async {
                   if (formKey.currentState!.validate()) {
-                    await authProvider.sendEMailOTP().then(
+                    authProvider.setReasonType(AppKeys().LOGIN_VERIFICATION);
+
+                    await authProvider.sendMailForReason().then(
                       (value) {
                         if (value) {
-                          Get.to(() => OtpVerification());
+                          Get.to(
+                            () => OtpVerification(forLogin: true),
+                          );
                         }
                       },
                     );

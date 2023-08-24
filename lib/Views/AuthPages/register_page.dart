@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:virtual_exchange/Providers/AuthProviders/auth_provider.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
+import 'package:virtual_exchange/Services/StorageServices/get_storage.dart';
 import 'package:virtual_exchange/Views/AuthPages/otp_verification.dart';
 import 'package:virtual_exchange/Widgets/app_button.dart';
 import 'package:virtual_exchange/Widgets/custom_form_field.dart';
@@ -31,7 +32,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
             "Get OTP",
             onTap: () async {
               if (formKey.currentState!.validate()) {
-                await authProvider.sendEMailOTP().then((value) {
+                await authProvider.sendEMailOTPForRegistration().then((value) {
                   if (value) Get.to(() => OtpVerification());
                 });
               }

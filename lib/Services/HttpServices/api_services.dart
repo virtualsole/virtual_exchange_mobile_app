@@ -6,27 +6,27 @@ import 'package:virtual_exchange/Widgets/show_progress.dart';
 import 'package:virtual_exchange/string_and_consts.dart';
 
 class ApiService {
-  static Future<String> getMethod(
-      {required String url, Map<String, String> bodyFields = const {}}) async {
+  static Future<String> getMethod({required String url, Map<String, String>? bodyFields}) async {
     var headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
     };
     try {
-      logger.i(bodyFields);
       http.Request request = http.Request('GET', Uri.parse(url));
       request.headers.addAll(headers);
-
-      if (bodyFields.isNotEmpty) {
-        request.bodyFields = bodyFields;
-      }
-      request.headers.addAll(headers);
-      http.StreamedResponse response = await request.send();
+      if (bodyFields != null) request.bodyFields = bodyFields;
+      var response = await request.send();
       stopProgress();
       if (response.statusCode == 200) {
-        return await response.stream.bytesToString();
+        final res = await response.stream.bytesToString();
+
+        logger.wtf(res);
+
+        return res;
+      } else {
+        throw Exception("Status Code is not 200");
       }
-      return "";
     } on Exception catch (e) {
+      stopProgress();
       logger.e(e);
       return "";
     }

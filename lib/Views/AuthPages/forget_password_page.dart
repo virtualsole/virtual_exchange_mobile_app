@@ -25,12 +25,12 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
         otpSent ? "Submit" : "Send OTP",
         onTap: () {
           if (formKey.currentState!.validate()) {
-            authProvider.sendEMailOTP().then((value) {
-              if (value) {
-                otpSent = true;
-                setState(() {});
-              }
-            });
+            // authProvider.verifyEmailOTP().then((value) {
+            //   if (value) {
+            //     otpSent = true;
+            //     setState(() {});
+            //   }
+            // });
           }
         },
       ).paddingSymmetric(horizontal: 10, vertical: 20),

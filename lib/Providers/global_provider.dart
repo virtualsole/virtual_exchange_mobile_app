@@ -85,7 +85,7 @@ class GlobalProvider extends ChangeNotifier {
   }
 
   void getThemeFormLocal() {
-    isDarkMode = AppStorage.box.read(AppStorage.darkMode) ?? false;
+    isDarkMode = AppStorage.box.read(AppStorage.DARK_MODE) ?? false;
     setThemeData(isDarkMode);
 
     Future.delayed(Duration.zero, () {});
@@ -93,9 +93,9 @@ class GlobalProvider extends ChangeNotifier {
 
   void changeTheme() {
     if (isDarkMode == false) {
-      AppStorage.box.write(AppStorage.darkMode, true);
+      AppStorage.box.write(AppStorage.DARK_MODE, true);
     } else {
-      AppStorage.box.write(AppStorage.darkMode, false);
+      AppStorage.box.write(AppStorage.DARK_MODE, false);
     }
     getThemeFormLocal();
     notifyListeners();
