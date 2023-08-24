@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:virtual_exchange/Models/AuthModels/get_userId_response.dart';
 import 'package:virtual_exchange/Services/HttpServices/api_key.dart';
 import 'package:virtual_exchange/Services/HttpServices/api_services.dart';
 import 'package:virtual_exchange/Services/HttpServices/api_urls.dart';
@@ -125,25 +126,40 @@ class AuthProvider extends ChangeNotifier {
     return false;
   }
 
-  void forgetPassword() async {
+  Future<bool> forgetPassword() async {
     showProgress();
-    final response = await ApiService.getMethod(url: ApiUrls.FORGET_PASSWORD, bodyFields: {
+    final response = await ApiService.postMethod(url: ApiUrls.FORGET_PASSWORD, bodyFields: {
       'api_key': appKeys.apiKey,
-      'email': emailCtrl.text,
+      'user_id': getUserIdResponse?.data?.first.userId ?? "",
+      'password': passwordCtrl.text,
     });
+    logger.i(response);
+
     stopProgress();
+    final jd = json.decode(response);
+    if (jd['status'] != 'success') return false;
 
     logger.i(response);
-    if (response.isEmpty) return;
+    showMessage(response);
+    if (response.isEmpty) return false;
+    return false;
   }
 
-  void getUserId() async {
+  GetUserIdResponse? getUserIdResponse;
+
+  Future<bool> getUserId() async {
     showProgress();
     final response = await ApiService.getMethod(
         url: ApiUrls.GET_USER_ID, bodyFields: {'api_key': appKeys.apiKey, 'email': emailCtrl.text});
+    if (response.isEmpty) return false;
+    getUserIdResponse = getUserIdResponseFromJson(response);
 
-    logger.i(response);
-    if (response.isEmpty) return;
+    if (getUserIdResponse?.status == "fail") {
+      showMessage(response);
+      return false;
+    }
+
+    return true;
   }
 
   Future<bool> getUserInfoByID() async {
@@ -162,6 +178,16 @@ class AuthProvider extends ChangeNotifier {
 
     if (jd["status"] != "success") return false;
     AppStorage.box.write(AppStorage.USER_DATA, response);
+    return true;
+  }
+
+  Future<bool> update2fa() async {
+    final response = await ApiService.getMethod(url: ApiUrls.UPDATE_2_FA);
+    if (response.isEmpty) return false;
+
+    final jd = json.decode(response);
+    if (jd["status"] != "success") return false;
+
     return true;
   }
 

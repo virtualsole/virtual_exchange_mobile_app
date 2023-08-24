@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:virtual_exchange/Plugins/PinField/OtpInput/pin_code_fields.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
 import 'package:virtual_exchange/Views/AuthPages/otp_verification.dart';
@@ -25,12 +26,13 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
         otpSent ? "Submit" : "Send OTP",
         onTap: () {
           if (formKey.currentState!.validate()) {
-            // authProvider.verifyEmailOTP().then((value) {
-            //   if (value) {
-            //     otpSent = true;
-            //     setState(() {});
-            //   }
-            // });
+            authProvider.getUserId().then((value) {
+              if (value) {
+                if (authProvider.getUserIdResponse?.data?.first.userId != null) {
+                  authProvider.forgetPassword();
+                }
+              }
+            });
           }
         },
       ).paddingSymmetric(horizontal: 10, vertical: 20),
@@ -77,22 +79,34 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                   return null;
                 },
               ).paddingOnly(bottom: 5),
-              if (otpSent)
-                PinCodeTextField(
-                  validator: (String? v) {
-                    if (v!.isEmpty)
-                      return "*Required";
-                    else if (v.length < 6) {
-                      return "invalid";
-                    }
-                    ;
-                    return null;
-                  },
-                  appContext: context,
-                  length: 6,
-                  onChanged: (String? value) {},
-                  controller: authProvider.pinCtrl,
-                ),
+
+              AppFormField(
+                hintText: "Please Enter New Password",
+                controller: authProvider.passwordCtrl,
+                validator: (String? v) {
+                  if (v!.isEmpty)
+                    return "*Required";
+                  else if (v.length < 8) return "*password must be 8 characters";
+                  return null;
+                },
+              ).paddingOnly(bottom: 5),
+
+              // if (otpSent)
+              //   PinCodeTextField(
+              //     validator: (String? v) {
+              //       if (v!.isEmpty)
+              //         return "*Required";
+              //       else if (v.length < 6) {
+              //         return "invalid";
+              //       }
+              //       ;
+              //       return null;
+              //     },
+              //     appContext: context,
+              //     length: 6,
+              //     onChanged: (String? value) {},
+              //     controller: authProvider.pinCtrl,
+              //   ),
             ],
           ).paddingSymmetric(horizontal: 10),
         ),

@@ -32,32 +32,29 @@ class ApiService {
     }
   }
 
-  static Future<http.Response?> postMethod(
-      {required String url, Map? body, bool bypassStatusCode = false}) async {
-    return await http.post(
-      Uri.parse(url),
-      body: body != null ? json.encode(body) : null,
-      headers: <String, String>{
-        "Accept": "application/json",
-        "Content-type": "application/json",
-        //TODO: ADD TOKEN
-        // "Authorization": "Bearer ${authController.getUser()?.token}",
-      },
-    ).then((res) {
-      logger
-          .i('URL => $url\nResponse StatusCode => ${res.statusCode}\nResponse Body => ${res.body}');
-      // AppConst.stopProgress();
-      if (res.statusCode != 200 && res.statusCode != 201 && !bypassStatusCode) {
-        exceptionAlert(res.body /*, isNeedResponse: isNeedResponse*/);
-        // if (isNeedResponse) return _res;
-        return null;
+  static Future<String> postMethod({required String url, Map<String, String>? bodyFields}) async {
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    };
+    try {
+      http.Request request = http.Request('POST', Uri.parse(url));
+      request.headers.addAll(headers);
+      if (bodyFields != null) request.bodyFields = bodyFields;
+      var response = await request.send();
+
+      stopProgress();
+      final res = await response.stream.bytesToString();
+
+      if (response.statusCode == 200) {
+        return res;
+      } else {
+        throw Exception("Status Code is not 200");
       }
-      return res;
-    }).onError((error, stackTrace) {
-      debugPrint('Error in api call => $error\nUrl => $url');
-      logger.e('stackTrace => $stackTrace');
-      return null;
-    });
+    } on Exception catch (e) {
+      stopProgress();
+      logger.e(e);
+      return "";
+    }
   }
 
   static Future<String?> postMultiPartQuery(String url,
