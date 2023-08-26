@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+// import 'package:trust_wallet_core/flutter_trust_wallet_core.dart';
 import 'package:virtual_exchange/Providers/AuthProviders/auth_provider.dart';
+import 'package:virtual_exchange/Providers/WalletProviders/wallet_provider.dart';
 import 'package:virtual_exchange/Providers/global_provider.dart';
 import 'package:virtual_exchange/Providers/home_page_provider.dart';
 import 'package:virtual_exchange/splash.dart';
 
 void main() async {
   await GetStorage.init();
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // FlutterTrustWalletCore.init();
 
   runApp(
     MultiProvider(
@@ -16,6 +21,7 @@ void main() async {
         ChangeNotifierProvider.value(value: AuthProvider()),
         ChangeNotifierProvider.value(value: HomePageProvider()),
         ChangeNotifierProvider.value(value: GlobalProvider()),
+        ChangeNotifierProvider.value(value: WalletProvider()),
       ],
       child: Consumer<GlobalProvider>(
         builder: (BuildContext context, value, Widget? child) {

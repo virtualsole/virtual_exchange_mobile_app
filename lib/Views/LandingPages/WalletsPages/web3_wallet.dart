@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:virtual_exchange/Providers/providers.dart';
 import 'package:virtual_exchange/Views/AuthPages/auth_page.dart';
 import 'package:virtual_exchange/Widgets/app_button.dart';
 
@@ -39,7 +40,11 @@ class Web3WalletPage extends StatelessWidget {
           ).paddingOnly(bottom: 50),
           AppButton(
             "Connect Wallet",
-            onTap: () {},
+            onTap: () {
+              // walletProvider.connectWallet();
+              // walletProvider.launchMetaMask();
+              walletProvider.getKey();
+            },
           ).paddingOnly(bottom: 30),
           TextButton(
             onPressed: () {
