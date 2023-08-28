@@ -2,40 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-// import 'package:trust_wallet_core/flutter_trust_wallet_core.dart';
-import 'package:virtual_exchange/Providers/AuthProviders/auth_provider.dart';
-import 'package:virtual_exchange/Providers/WalletProviders/wallet_provider.dart';
-import 'package:virtual_exchange/Providers/global_provider.dart';
-import 'package:virtual_exchange/Providers/home_page_provider.dart';
-import 'package:virtual_exchange/splash.dart';
+import 'package:virtual_exchange/app_theme.dart';
+import 'package:virtual_exchange/src/utlis.dart';
+import 'src/app.dart';
 
 void main() async {
   await GetStorage.init();
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // FlutterTrustWalletCore.init();
 
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(value: AuthProvider()),
-        ChangeNotifierProvider.value(value: HomePageProvider()),
-        ChangeNotifierProvider.value(value: GlobalProvider()),
-        ChangeNotifierProvider.value(value: WalletProvider()),
+        ChangeNotifierProvider.value(value: ThemeProvider()),
       ],
-      child: Consumer<GlobalProvider>(
-        builder: (BuildContext context, value, Widget? child) {
-          final globalProvider = Provider.of<GlobalProvider>(context, listen: false);
-
-          globalProvider.getThemeFormLocal();
-
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: globalProvider.themeData,
-            home: const SplashScreen(),
-          );
-        },
-      ),
+      child: Consumer<ThemeProvider>(
+          builder: (BuildContext context, ThemeProvider value, Widget? child) {
+        return GetMaterialApp(
+          title: 'Virtual Exchange',
+          debugShowCheckedModeBanner: false,
+          theme: value.themeData,
+          initialRoute: '/root',
+          defaultTransition: Transition.native,
+          locale: Locale('en', 'EN'),
+          getPages: [
+            GetPage(name: '/root', page: () => App()),
+          ],
+        );
+      }),
     ),
   );
 }
