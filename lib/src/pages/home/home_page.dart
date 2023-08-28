@@ -16,7 +16,6 @@ class _HomePageState extends State<HomePage> {
   ScrollController _controller = new ScrollController();
   StreamController? _postsController;
   Timer? timer;
-
   // String _api = ''; // Find a API can get Binance Data
   String _option = 'Change';
   bool _showAppBar = true;
@@ -35,6 +34,7 @@ class _HomePageState extends State<HomePage> {
     'Subscribe VRC Facebook Channel...',
     'Subscribe VRC Twitter Channel...',
     'Subscribe VRC Instagram Channel...',
+    'Subscribe VRC Gapo Channel...',
   ];
 
   List<T> map<T>(List list, Function handler) {

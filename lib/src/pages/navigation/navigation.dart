@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:virtual_exchange/Plugins/Flutter_Icons/lib/flutter_icons.dart';
+import 'package:virtual_exchange/src/pages/Wallet/wallet.dart';
 import 'package:virtual_exchange/src/pages/home/home_page.dart';
 import 'package:virtual_exchange/src/pages/market/market_page.dart';
 import 'package:virtual_exchange/src/pages/options/options_page.dart';
@@ -16,7 +17,7 @@ class _NavigationState extends State<Navigation> {
     MarketPage(),
     OptionsPage(),
     OptionsPage(),
-    OptionsPage(),
+    WalletPage(),
   ];
 
   @override
