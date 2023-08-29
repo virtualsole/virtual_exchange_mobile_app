@@ -34,19 +34,17 @@ class _FavouritePageState extends State<FavouritePage> {
                     children: [
                       TextSpan(
                         text: 'VRC/',
-                        style: TextStyle(
-                          fontSize: size.width / 26.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w400),
                       ),
                       TextSpan(
                         text: 'BTC',
-                        style: TextStyle(
-                          fontSize: size.width / 28.0,
-                          color: Colors.grey.shade200,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w700),
                       ),
                     ],
                   ),
@@ -71,11 +69,7 @@ class _FavouritePageState extends State<FavouritePage> {
               children: [
                 Text(
                   '0.000000031',
-                  style: TextStyle(
-                    fontSize: size.width / 28.0,
-                    color: Colors.grey.shade300,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(),
                 ),
               ],
             ),

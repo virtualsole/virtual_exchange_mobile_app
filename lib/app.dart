@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:virtual_exchange/app_theme.dart';
+import 'package:virtual_exchange/Providers/providers.dart';
+import 'package:virtual_exchange/Widgets/show_progress.dart';
 
 import '/pages/navigation/navigation.dart';
 
@@ -13,9 +13,14 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> with WidgetsBindingObserver {
+  bool initTheme = false;
   @override
   void initState() {
-    Provider.of<ThemeProvider>(context, listen: false).getTheme();
+    themeProvider.getTheme().then((value) {
+      initTheme = true;
+      setState(() {});
+    });
+
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -33,6 +38,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return const Navigation();
+    return initTheme ? const Navigation() : const ShowProgress();
   }
 }

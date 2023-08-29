@@ -29,7 +29,7 @@ class _NavigationState extends State<Navigation> {
       body: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           elevation: .0,
-          backgroundColor: const Color(0xFF1e1e1e).withOpacity(.98),
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           currentIndex: currentPage,
           onTap: (int i) {
             setState(() {

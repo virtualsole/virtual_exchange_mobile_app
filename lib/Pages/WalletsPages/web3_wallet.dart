@@ -13,16 +13,12 @@ class Web3WalletPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Theme.of(context).primaryColorLight,
+          color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius:
               const BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // SvgPicture.asset(
-          //   ImageRes.web3Wallet,
-          //   color: AppColors.primaryColor,
-          // ),
           Text(
             "Web3 Wallet",
             style: Theme.of(
@@ -38,7 +34,6 @@ class Web3WalletPage extends StatelessWidget {
           AppButton(
             "Connect Wallet",
             onTap: () {
-              // walletProvider.connectWallet();
               walletProvider.launchMetaMask();
             },
           ).paddingOnly(bottom: 30),

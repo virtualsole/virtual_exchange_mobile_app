@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:virtual_exchange/Plugins/Flutter_Icons/lib/flutter_icons.dart';
+import 'package:virtual_exchange/Providers/providers.dart';
 
 import 'pages/favourite_page.dart';
 
@@ -40,21 +40,20 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
       appBar: AppBar(
         centerTitle: false,
         elevation: .0,
-        backgroundColor: const Color(0xFF1e1e1e).withOpacity(.98),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           'Market',
-          style: TextStyle(
-            fontSize: size.width / 16.0,
-            color: Colors.grey.shade100,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         actions: [
           IconButton(
             onPressed: () {},
             icon: Icon(
-              Feather.search,
-              color: Colors.grey.shade100,
+              Icons.search,
+              color: themeProvider.darkMode ? Colors.white : Colors.black,
               size: size.width / 16.0,
             ),
           ),
@@ -115,7 +114,7 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
         systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
       body: Container(
-        color: const Color(0xFF141414),
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: Column(
           children: [
             const SizedBox(
@@ -146,10 +145,7 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
             flex: 2,
             child: Text(
               'Pairs',
-              style: TextStyle(
-                fontSize: size.width / 26.0,
-                color: Colors.grey.shade400,
-              ),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
             ),
           ),
           Expanded(
@@ -159,18 +155,13 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
               children: [
                 Text(
                   'Last Price',
-                  style: TextStyle(
-                    fontSize: size.width / 30.0,
-                    color: Colors.grey.shade400,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  style:
+                      Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
                 ),
-                const SizedBox(
-                  width: 4.0,
-                ),
+                const SizedBox(width: 4.0),
                 Icon(
                   FontAwesomeIcons.sort,
-                  color: Colors.grey.shade400,
+                  color: themeProvider.darkMode ? Colors.white : Colors.black,
                   size: size.width / 26.0,
                 ),
               ],
@@ -183,18 +174,15 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
               children: [
                 Text(
                   'Change',
-                  style: TextStyle(
-                    fontSize: size.width / 30.0,
-                    color: Colors.grey.shade400,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  style:
+                      Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(
                   width: 4.0,
                 ),
                 Icon(
                   FontAwesomeIcons.sort,
-                  color: Colors.grey.shade400,
+                  color: themeProvider.darkMode ? Colors.white : Colors.black,
                   size: size.width / 26.0,
                 ),
               ],

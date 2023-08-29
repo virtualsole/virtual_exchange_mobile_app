@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:virtual_exchange/Plugins/Flutter_Icons/lib/flutter_icons.dart';
+import 'package:virtual_exchange/Providers/providers.dart';
 
 import 'widgets/drawer_layout.dart';
 
@@ -115,31 +117,24 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
       ),
       appBar: AppBar(
         centerTitle: false,
-        elevation: .0,
-        backgroundColor: const Color(0xFF1e1e1e).withOpacity(.98),
+        elevation: 2,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leading: IconButton(
           onPressed: () => _scaffoldKey.currentState?.openDrawer(),
           icon: Icon(
-            Feather.align_left,
-            color: Colors.grey.shade100,
-            size: size.width / 15.0,
+            Icons.menu,
+            color: themeProvider.darkMode ? Colors.grey.shade100 : Colors.black,
+            // size: size.width / 15.0,
           ),
         ),
-        title: Text(
-          'ETH0107CALLW',
-          style: TextStyle(
-            fontSize: size.width / 18.0,
-            color: Colors.grey.shade100,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        title: Text('ETH0107CALLW', style: Theme.of(context).textTheme.bodyLarge),
         actions: [
           IconButton(
             onPressed: () {},
             icon: Icon(
-              Feather.bar_chart_2,
-              color: Colors.grey.shade50,
-              size: size.width / 15.0,
+              Icons.bar_chart,
+              color: themeProvider.darkMode ? Colors.grey.shade100 : Colors.black,
+              // size: size.width / 15.0,
             ),
           ),
           const SizedBox(
@@ -193,7 +188,7 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
         systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
       body: Container(
-        color: const Color(0xFF141414),
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,19 +198,7 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
               ),
               _buildTopBar(context),
               _buildValueOfTopBar(context),
-              // Container(
-              //   height: _size.height * .2,
-              //   margin: EdgeInsets.symmetric(vertical: 12.0),
-              //   padding: EdgeInsets.symmetric(horizontal: 20.0),
-              //   child: OHLCVGraph(
-              //     data: sampleData,
-              //     enableGridLines: true,
-              //     volumeProp: .001,
-              //     fallbackHeight: 200.0,
-              //     gridLineAmount: 6,
-              //     lineWidth: .8,
-              //   ),
-              // ),
+
               Container(
                 padding: const EdgeInsets.only(
                   left: 12.0,
@@ -269,23 +252,16 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              Feather.file,
-                              color: Colors.grey.shade400,
-                              size: size.width / 16.8,
-                            ),
-                            const SizedBox(
-                              width: 8.0,
-                            ),
+                            const Icon(Icons.file_copy),
+                            const SizedBox(width: 8.0),
                             Padding(
                               padding: const EdgeInsets.only(top: 4.0),
                               child: Text(
                                 'No order',
-                                style: TextStyle(
-                                  color: Colors.grey.shade200,
-                                  fontSize: size.width / 20.5,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                               ),
                             ),
                           ],
@@ -312,10 +288,7 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
             flex: 4,
             child: Text(
               'Strike Price',
-              style: TextStyle(
-                fontSize: size.width / 30.0,
-                color: Colors.grey,
-              ),
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
           Expanded(
@@ -325,11 +298,7 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
               children: [
                 Text(
                   'Spot Price',
-                  style: TextStyle(
-                    fontSize: size.width / 30.0,
-                    color: Colors.grey.shade400,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
             ),
@@ -340,16 +309,10 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  'Before Enpiry',
-                  style: TextStyle(
-                    fontSize: size.width / 30.0,
-                    color: Colors.grey.shade400,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  'Before Expiry',
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
-                const SizedBox(
-                  width: 4.0,
-                ),
+                const SizedBox(width: 4.0),
                 Icon(
                   FontAwesomeIcons.sortDown,
                   color: Colors.grey.shade400,
@@ -364,7 +327,6 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
   }
 
   Widget _buildValueOfTopBar(context) {
-    final size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.fromLTRB(12.0, 2.0, 6.0, 8.0),
       child: Row(
@@ -373,11 +335,7 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
             flex: 4,
             child: Text(
               '750.04',
-              style: TextStyle(
-                fontSize: size.width / 26.0,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(
@@ -387,11 +345,8 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
               children: [
                 Text(
                   '1112.24',
-                  style: TextStyle(
-                    fontSize: size.width / 26.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style:
+                      Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -403,11 +358,8 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
               children: [
                 Text(
                   '1 Day',
-                  style: TextStyle(
-                    fontSize: size.width / 26.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style:
+                      Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -430,14 +382,12 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
             _buildAction(context, 'Sell', false),
           ],
         ),
-        const SizedBox(
-          height: 12.0,
-        ),
+        const SizedBox(height: 12.0),
         Container(
           padding: const EdgeInsets.fromLTRB(6.0, 8.0, 4.0, 8.0),
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.grey.shade600,
+              color: Colors.grey.shade300,
               width: .5,
             ),
             borderRadius: BorderRadius.circular(4.0),
@@ -447,11 +397,7 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
             children: [
               Text(
                 'Custom',
-                style: TextStyle(
-                  fontSize: size.width / 32.0,
-                  color: Colors.grey.shade400,
-                  fontWeight: FontWeight.w300,
-                ),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               Padding(
                 padding: const EdgeInsets.only(
@@ -466,9 +412,7 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
             ],
           ),
         ),
-        const SizedBox(
-          height: 12.0,
-        ),
+        const SizedBox(height: 12.0),
         _buildCustomValue(context),
         const SizedBox(
           height: 12.0,
@@ -515,14 +459,12 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
             _buildPercentCard(context, '100%'),
           ],
         ),
-        const SizedBox(
-          height: 12.0,
-        ),
+        const SizedBox(height: 12.0),
         Container(
           padding: const EdgeInsets.symmetric(vertical: 12.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4.0),
-            color: const Color(0xFF32C17A),
+            color: _action == "Buy" ? const Color(0xFF32C17A) : Colors.red,
           ),
           alignment: Alignment.center,
           child: Text(
@@ -547,26 +489,29 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
             _action = title;
           });
         },
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 12.0),
-          decoration: BoxDecoration(
-            color: _action == title ? Colors.amber : Colors.white10,
-            borderRadius: BorderRadius.horizontal(
-              left: Radius.circular(
-                left ? 2.5 : .0,
-              ),
-              right: Radius.circular(
-                left ? .0 : 2.5,
+        child: Material(
+          elevation: 2,
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
+            decoration: BoxDecoration(
+              color: _action == title ? Colors.amber : Colors.grey.withOpacity(.5),
+              borderRadius: BorderRadius.horizontal(
+                left: Radius.circular(
+                  left ? 2.5 : .0,
+                ),
+                right: Radius.circular(
+                  left ? .0 : 2.5,
+                ),
               ),
             ),
-          ),
-          alignment: Alignment.center,
-          child: Text(
-            title,
-            style: TextStyle(
-              fontSize: size.width / 28.0,
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
+            alignment: Alignment.center,
+            child: Text(
+              title,
+              style: TextStyle(
+                fontSize: size.width / 28.0,
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ),
@@ -589,7 +534,7 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
             child: Container(
               height: 36.0,
               decoration: BoxDecoration(
-                color: Colors.white24,
+                color: themeProvider.darkMode ? Colors.white24 : Colors.black12,
                 borderRadius: const BorderRadius.horizontal(
                   left: Radius.circular(
                     6.0,
@@ -601,9 +546,8 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
                 ),
               ),
               child: Icon(
-                Feather.minus,
-                color: Colors.grey.shade200,
-                size: size.width / 20.0,
+                CupertinoIcons.minus,
+                color: themeProvider.darkMode ? Colors.white : Colors.black,
               ),
             ),
           ),
@@ -640,25 +584,23 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
               });
             },
             child: Container(
-              height: 36.0,
-              decoration: BoxDecoration(
-                color: Colors.white24,
-                borderRadius: const BorderRadius.horizontal(
-                  right: Radius.circular(
-                    6.0,
+                height: 36.0,
+                decoration: BoxDecoration(
+                  color: themeProvider.darkMode ? Colors.white24 : Colors.black12,
+                  borderRadius: const BorderRadius.horizontal(
+                    right: Radius.circular(
+                      6.0,
+                    ),
+                  ),
+                  border: Border.all(
+                    color: Colors.white24,
+                    width: .4,
                   ),
                 ),
-                border: Border.all(
-                  color: Colors.white24,
-                  width: .4,
-                ),
-              ),
-              child: Icon(
-                Feather.plus,
-                color: Colors.grey.shade200,
-                size: size.width / 20.0,
-              ),
-            ),
+                child: Icon(
+                  CupertinoIcons.plus,
+                  color: themeProvider.darkMode ? Colors.white : Colors.black,
+                )),
           ),
         ),
       ],
@@ -666,31 +608,25 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
   }
 
   Widget _buildPercentCard(context, title) {
-    final size = MediaQuery.of(context).size;
     return Expanded(
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.white38,
+            color: themeProvider.darkMode ? Colors.white30 : Colors.black38,
             width: .4,
           ),
         ),
         alignment: Alignment.center,
         child: Text(
           title,
-          style: TextStyle(
-            color: Colors.white70,
-            fontSize: size.width / 40.0,
-            fontWeight: FontWeight.w300,
-          ),
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 10),
         ),
       ),
     );
   }
 
   Widget _buildRightColumn(context) {
-    final size = MediaQuery.of(context).size;
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -702,19 +638,13 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
               children: [
                 Text(
                   'Price',
-                  style: TextStyle(
-                    fontSize: size.width / 28.8,
-                    color: Colors.grey.shade300,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  style:
+                      Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 Text(
                   'Amount',
-                  style: TextStyle(
-                    fontSize: size.width / 28.8,
-                    color: Colors.grey.shade400,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  style:
+                      Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -729,11 +659,7 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
             alignment: Alignment.center,
             child: Text(
               '9.5129 ≈ \$9.51',
-              style: TextStyle(
-                fontSize: size.width / 28.5,
-                color: Colors.grey.shade100,
-                fontWeight: FontWeight.w500,
-              ),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
             ),
           ),
           _buildValuePriceLine(context, '10.1682', '312', const Color(0xFF00FF80)),
@@ -763,11 +689,7 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
           ),
           Text(
             amount,
-            style: TextStyle(
-              fontSize: size.width / 30.0,
-              color: Colors.grey.shade200,
-              fontWeight: FontWeight.w400,
-            ),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(),
           ),
         ],
       ),

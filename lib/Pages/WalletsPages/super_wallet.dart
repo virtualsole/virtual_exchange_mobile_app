@@ -11,7 +11,7 @@ class SuperWalletPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Theme.of(context).primaryColorLight,
+          color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius:
               const BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))),
       child: Column(
