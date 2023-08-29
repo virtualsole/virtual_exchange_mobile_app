@@ -1,14 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 
 
-    package="com.virtual.virtual_exchange">
+    package="com.virtual.exchange">
 
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
 
     <queries>
-        <package android:name="com.virtual.virtual_exchange" />
+        <package="com.virtual.exchange">
     </queries>
     <application
         android:name="${applicationName}"

@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:virtual_exchange/src/Services/storage_services.dart';
-import 'package:virtual_exchange/src/utlis.dart';
+import 'package:virtual_exchange/Services/storage_services.dart';
+import 'package:virtual_exchange/utlis.dart';
 
 class AppTheme {
   static final darkTheme = ThemeData(
-      scaffoldBackgroundColor: AppColors.scaffoldBackgroundColorDarkMode,
-      primaryColor: Color(0xFFFFD500),
-      primaryColorLight: Color(0xFFFFD500).withOpacity(.5));
+    scaffoldBackgroundColor: AppColors.scaffoldBackgroundColorDarkMode,
+    primaryColor: AppColors.primaryColor,
+    primaryColorLight: AppColors.primaryColor.withOpacity(.5),
+    appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent, elevation: 0),
+    textTheme: const TextTheme(
+      bodySmall: TextStyle(color: Colors.white),
+      bodyMedium: TextStyle(color: Colors.white),
+      bodyLarge: TextStyle(color: Colors.white),
+    ),
+  );
   static final lightTheme = ThemeData(
-      scaffoldBackgroundColor: AppColors.scaffoldBackgroundColorLightMode,
-      primaryColor: Color(0xFFFFD500),
-      primaryColorLight: Color(0xFFFFD500).withOpacity(.5));
+    scaffoldBackgroundColor: AppColors.scaffoldBackgroundColorLightMode,
+    primaryColor: AppColors.primaryColor,
+    appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent, elevation: 0),
+    primaryColorLight: AppColors.primaryColor.withOpacity(.5),
+  );
 }
 
 class AppColors {
-  static Color scaffoldBackgroundColorDarkMode = Color(0xFF1e1e1e);
+  static Color scaffoldBackgroundColorDarkMode = const Color(0xFF1e1e1e);
+  static Color primaryColor = const Color(0xFFFFD500);
   static Color scaffoldBackgroundColorLightMode = Colors.white;
 }
 
@@ -23,7 +33,7 @@ class ThemeProvider extends ChangeNotifier {
   bool darkMode = true;
 
   void getTheme() async {
-    bool? res = await AppStorage.box.read(AppStorage.THEME_MODE);
+    bool? res = AppStorage.box.read(AppStorage.THEME_MODE);
     if (res == true) {
       darkMode = true;
     } else {

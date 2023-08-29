@@ -7,7 +7,8 @@ Widget _defaultTransitionBuilder(Widget child, Animation<double> animation) => S
     );
 
 class IconToggle extends StatefulWidget {
-  IconToggle({
+  const IconToggle({
+    super.key,
     this.unselectedIconData = Icons.radio_button_unchecked,
     this.selectedIconData = Icons.radio_button_checked,
     this.activeColor = Colors.blue,
@@ -27,8 +28,9 @@ class IconToggle extends StatefulWidget {
   final AnimatedSwitcherTransitionBuilder transitionBuilder;
   final Duration duration;
   final Duration? reverseDuration;
+
   @override
-  _IconToggleState createState() => _IconToggleState();
+  State<StatefulWidget> createState() => _IconToggleState();
 }
 
 class _IconToggleState extends State<IconToggle> with SingleTickerProviderStateMixin {
@@ -41,8 +43,8 @@ class _IconToggleState extends State<IconToggle> with SingleTickerProviderStateM
     super.initState();
     _controller = AnimationController(
         vsync: this,
-        duration: Duration(milliseconds: 100),
-        reverseDuration: Duration(milliseconds: 50));
+        duration: const Duration(milliseconds: 100),
+        reverseDuration: const Duration(milliseconds: 50));
     _position = CurvedAnimation(parent: _controller!, curve: Curves.linear);
     _position?.addStatusListener((status) {
       if (status == AnimationStatus.dismissed && widget.onChanged != null && _cancel == false) {
@@ -144,4 +146,18 @@ class _IconPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
+
+class Exam extends StatefulWidget {
+  const Exam({super.key});
+
+  @override
+  State<Exam> createState() => _ExamState();
+}
+
+class _ExamState extends State<Exam> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
 }
