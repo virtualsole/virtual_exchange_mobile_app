@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+import 'package:virtual_exchange/Providers/QrProvider/qr_provider.dart';
 import 'package:virtual_exchange/Providers/WalletProviders/wallet_provider.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
 import 'package:virtual_exchange/Providers/theme_provider.dart';
@@ -9,6 +10,8 @@ import '/Providers/AuthProviders/auth_provider.dart';
 import 'app.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await GetStorage.init();
 
   runApp(
@@ -17,6 +20,7 @@ void main() async {
         ChangeNotifierProvider.value(value: ThemeProvider()),
         ChangeNotifierProvider.value(value: AuthProvider()),
         ChangeNotifierProvider.value(value: WalletProvider()),
+        ChangeNotifierProvider.value(value: QrProvider()),
       ],
       child: Consumer<ThemeProvider>(
         builder: (BuildContext context, ThemeProvider value, Widget? child) {

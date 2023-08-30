@@ -1,14 +1,18 @@
 import 'dart:async';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:virtual_exchange/Pages/HomePages/widgets/home_search.dart';
+import 'package:virtual_exchange/Pages/Notification/notification_page.dart';
+import 'package:virtual_exchange/Pages/suport_web_view.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
 import 'package:virtual_exchange/Models/change.dart';
 import 'package:virtual_exchange/app_theme.dart';
-import 'package:virtual_exchange/utlis.dart';
 
 import '../AuthPages/auth_page.dart';
+import 'qr_scan.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,9 +25,10 @@ class _HomePageState extends State<HomePage> {
   final ScrollController _controller = ScrollController();
   StreamController? _postsController;
   Timer? timer;
+
   // String _api = ''; // Find a API can get Binance Data
   String _option = 'Change';
-  bool _showAppBar = true;
+  final bool _showAppBar = true;
 
   var _current = 0;
   List imgList = [
@@ -62,39 +67,10 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Future fetchPost() async {
-    // final response = await http.get(Uri.parse(_api));
-
-    // if (response.statusCode == 200) {
-    //   return json.decode(response.body);
-    // } else {
-    //   throw Exception('Failed to load post');
-    // }
-  }
-
-  loadPosts() async {
-    fetchPost().then((res) async {
-      return;
-      // _postsController?.add(res);
-      // print(res['RAW']['PRICE'] ?? "Null Value");
-      // print('I\'m here');
-      // return res;
-    });
-  }
-
-  // startTimer() {
-  //   timer = Timer.periodic(Duration(milliseconds: 200), (t) {
-  //     setState(() {
-  //       _handleRefresh();
-  //     });
-  //   });
-  // }
-
   @override
   void initState() {
     _postsController = StreamController();
-    loadPosts();
-    // startTimer();
+
     super.initState();
   }
 
@@ -114,57 +90,85 @@ class _HomePageState extends State<HomePage> {
           ? AppBar(
               elevation: .0,
               backgroundColor: Colors.transparent,
-              title: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'Virtual ',
-                      style: TextStyle(
-                        fontSize: size.width / 18.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+              centerTitle: false,
+              title: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => LoginPage());
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        FontAwesomeIcons.user,
+                        color: themeProvider.darkMode ? Colors.white : Colors.black,
+                        size: size.width / 22.5,
                       ),
                     ),
-                    TextSpan(
-                      text: 'Exchange',
-                      style: TextStyle(
-                        fontSize: size.width / 18.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
+                  ).paddingOnly(right: 10),
+                  const HomeSearchWidget(),
+                ],
               ),
               actions: [
                 GestureDetector(
+                  child: Icon(
+                    CupertinoIcons.qrcode_viewfinder,
+                    color: themeProvider.darkMode ? Colors.black : Colors.white,
+                    size: 20,
+                  ),
                   onTap: () {
-                    // themeProvider.changeTheme();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext _) {
+                          return const QRViewPage();
+                        },
+                      ),
+                    );
+                  },
+                ).paddingOnly(right: 10),
+                GestureDetector(
+                  child: Icon(
+                    Icons.headset_mic_outlined,
+                    color: themeProvider.darkMode ? Colors.black : Colors.white,
+                    size: 20,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext _) {
+                      return const SupportWebView();
+                    }));
+                  },
+                ).paddingOnly(right: 10),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) {
+                          return const Notifications();
+                        },
+                      ),
+                    );
                   },
                   child: Icon(
-                    Icons.dark_mode,
-                    color: themeProvider.darkMode ? Colors.white : Colors.black,
-                    size: size.width / 22.5,
+                    Icons.notifications,
+                    color: themeProvider.darkMode ? Colors.black : Colors.white,
+                    size: 20,
                   ),
                 ).paddingOnly(right: 10),
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => LoginPage());
+                    themeProvider.changeTheme();
                   },
-                  child: Container(
-                    padding: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      FontAwesomeIcons.user,
-                      color: themeProvider.darkMode ? Colors.white : Colors.black,
-                      size: size.width / 22.5,
-                    ),
+                  child: Icon(
+                    Icons.dark_mode,
+                    color: themeProvider.darkMode ? Colors.white : Colors.black,
+                    size: 20,
                   ),
-                ),
-                const SizedBox(width: 6.0),
+                ).paddingOnly(right: 20),
               ],
             )
           : null,
