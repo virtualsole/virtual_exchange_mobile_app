@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:virtual_exchange/Data/type_coin.dart';
+import 'package:virtual_exchange/Providers/providers.dart';
 import 'package:virtual_exchange/utlis.dart';
 
 class HomeSearchWidget extends StatelessWidget {
@@ -16,14 +17,16 @@ class HomeSearchWidget extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          const Icon(
+          Icon(
             Icons.search,
-            color: Colors.black,
+            color: themeProvider.darkMode ? Colors.white : Colors.black,
           ),
           DefaultTextStyle(
             style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.black),
             child: AnimatedTextKit(
-              animatedTexts: btcs.map((e) => FadeAnimatedText(e)).toList(),
+              animatedTexts: btcs
+                  .map((e) => FadeAnimatedText(e, textStyle: Theme.of(context).textTheme.bodySmall))
+                  .toList(),
               repeatForever: true,
               onTap: () {
                 logger.i("Tap Event");

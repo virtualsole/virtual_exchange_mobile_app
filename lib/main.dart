@@ -4,7 +4,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:virtual_exchange/Providers/QrProvider/qr_provider.dart';
 import 'package:virtual_exchange/Providers/WalletProviders/wallet_provider.dart';
-import 'package:virtual_exchange/Providers/providers.dart';
 import 'package:virtual_exchange/Providers/theme_provider.dart';
 import '/Providers/AuthProviders/auth_provider.dart';
 import 'app.dart';

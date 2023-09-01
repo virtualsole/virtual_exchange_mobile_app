@@ -38,6 +38,7 @@ class AppTheme {
 class AppColors {
   static Color scaffoldBackgroundColorLightMode = Colors.white;
 
-  static Color scaffoldBackgroundColorDarkMode = const Color(0xFF1e1e1e);
+  // static Color scaffoldBackgroundColorDarkMode = const Color(0xFF1e1e1e);
+  static Color scaffoldBackgroundColorDarkMode = const Color(0xff22272D);
   static Color primaryColor = const Color(0xFFFFD500);
 }
