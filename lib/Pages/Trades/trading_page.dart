@@ -5,19 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'package:virtual_exchange/Plugins/Flutter_Icons/lib/flutter_icons.dart';
+import 'package:virtual_exchange/Pages/Trades/widgets/percent_selection.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
+import 'package:virtual_exchange/app_theme.dart';
 
+import 'widgets/buy_or_sell_button.dart';
 import 'widgets/drawer_layout.dart';
+import 'widgets/end_drawer.dart';
 
-class OptionsPage extends StatefulWidget {
-  const OptionsPage({super.key});
+class TradingPage extends StatefulWidget {
+  const TradingPage({super.key});
 
   @override
-  State<StatefulWidget> createState() => _OptionsPageState();
+  State<StatefulWidget> createState() => _TradingPageState();
 }
 
-class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStateMixin {
+class _TradingPageState extends State<TradingPage> with SingleTickerProviderStateMixin {
   TabController? _tabController;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   StreamController? _postsController;
@@ -25,8 +28,8 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
   final String _api =
       'https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&e=Kraken&api_key=5b5a7685ff31b6033f79ffc43c778605d47ca3a84a7d690ec510149ccb0e7f50';
 
-  String _action = 'Buy';
   double _valueCustom = 9.9902;
+  String _action = 'Buy';
 
   List sampleData = List.generate(
     10,
@@ -78,11 +81,16 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
   }
 
   startTimer() {
-    timer = Timer.periodic(const Duration(milliseconds: 200), (t) {
-      setState(() {
-        _handleRefresh();
-      });
-    });
+    timer = Timer.periodic(
+      const Duration(milliseconds: 200),
+      (t) {
+        setState(
+          () {
+            _handleRefresh();
+          },
+        );
+      },
+    );
   }
 
   @override
@@ -115,6 +123,7 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
           child: DrawerLayout(),
         ),
       ),
+      endDrawer: const EndDrawerLayout(),
       appBar: AppBar(
         centerTitle: false,
         elevation: 2,
@@ -130,7 +139,7 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
         title: Text('ETH0107CALLW', style: Theme.of(context).textTheme.bodyLarge),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => _scaffoldKey.currentState?.openEndDrawer(),
             icon: Icon(
               Icons.bar_chart,
               color: themeProvider.darkMode ? Colors.grey.shade100 : Colors.black,
@@ -376,11 +385,11 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            _buildAction(context, 'Buy', true),
-            _buildAction(context, 'Sell', false),
-          ],
+        BuySellButton(
+          onSelection: (String v) {
+            _action = v;
+            setState(() {});
+          },
         ),
         const SizedBox(height: 12.0),
         Container(
@@ -448,75 +457,27 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
         const SizedBox(
           height: 12.0,
         ),
-        Row(
-          children: [
-            _buildPercentCard(context, '25%'),
-            const SizedBox(width: 4.0),
-            _buildPercentCard(context, '50%'),
-            const SizedBox(width: 4.0),
-            _buildPercentCard(context, '75%'),
-            const SizedBox(width: 4.0),
-            _buildPercentCard(context, '100%'),
-          ],
+        PercentSelection(
+          onSelection: (List<String> value) {},
         ),
         const SizedBox(height: 12.0),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 12.0),
+          padding: const EdgeInsets.symmetric(vertical: 7.5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4.0),
-            color: _action == "Buy" ? const Color(0xFF32C17A) : Colors.red,
+            color: _action == "Buy" ? AppColors.greenColor : AppColors.redColor,
           ),
           alignment: Alignment.center,
           child: Text(
             _action,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w400,
-              fontSize: size.width / 24.0,
-            ),
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.copyWith(color: Colors.white, fontWeight: FontWeight.w700),
           ),
         ),
       ],
     ));
-  }
-
-  Widget _buildAction(context, title, left) {
-    final size = MediaQuery.of(context).size;
-    return Expanded(
-      child: GestureDetector(
-        onTap: () {
-          setState(() {
-            _action = title;
-          });
-        },
-        child: Material(
-          elevation: 2,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 12.0),
-            decoration: BoxDecoration(
-              color: _action == title ? Colors.amber : Colors.grey.withOpacity(.5),
-              borderRadius: BorderRadius.horizontal(
-                left: Radius.circular(
-                  left ? 2.5 : .0,
-                ),
-                right: Radius.circular(
-                  left ? .0 : 2.5,
-                ),
-              ),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: size.width / 28.0,
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
   }
 
   Widget _buildCustomValue(context) {
@@ -584,45 +545,27 @@ class _OptionsPageState extends State<OptionsPage> with SingleTickerProviderStat
               });
             },
             child: Container(
-                height: 36.0,
-                decoration: BoxDecoration(
-                  color: themeProvider.darkMode ? Colors.white24 : Colors.black12,
-                  borderRadius: const BorderRadius.horizontal(
-                    right: Radius.circular(
-                      6.0,
-                    ),
-                  ),
-                  border: Border.all(
-                    color: Colors.white24,
-                    width: .4,
+              height: 36.0,
+              decoration: BoxDecoration(
+                color: themeProvider.darkMode ? Colors.white24 : Colors.black12,
+                borderRadius: const BorderRadius.horizontal(
+                  right: Radius.circular(
+                    6.0,
                   ),
                 ),
-                child: Icon(
-                  CupertinoIcons.plus,
-                  color: themeProvider.darkMode ? Colors.white : Colors.black,
-                )),
+                border: Border.all(
+                  color: Colors.white24,
+                  width: .4,
+                ),
+              ),
+              child: Icon(
+                CupertinoIcons.plus,
+                color: themeProvider.darkMode ? Colors.white : Colors.black,
+              ),
+            ),
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildPercentCard(context, title) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: themeProvider.darkMode ? Colors.white30 : Colors.black38,
-            width: .4,
-          ),
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          title,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 10),
-        ),
-      ),
     );
   }
 

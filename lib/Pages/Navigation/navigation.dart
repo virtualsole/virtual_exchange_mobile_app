@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:virtual_exchange/Pages/Trades/trading_page.dart';
 import 'package:virtual_exchange/Pages/WalletsPages/wallet_page.dart';
 import 'package:virtual_exchange/Pages/HomePages/home_page.dart';
 import 'package:virtual_exchange/Pages/market/market_page.dart';
-import 'package:virtual_exchange/Pages/options/options_page.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -16,8 +16,8 @@ class _NavigationState extends State<Navigation> {
   final _pages = [
     const HomePage(),
     const MarketPage(),
-    const OptionsPage(),
-    const OptionsPage(),
+    const TradingPage(),
+    const TradingPage(),
     const WalletPage(),
   ];
 

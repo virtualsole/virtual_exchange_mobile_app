@@ -69,7 +69,7 @@ class _SupportWebViewState extends State<SupportWebView> with TickerProviderStat
               child: LinearProgressIndicator(
                 value: progress,
                 color: Colors.red,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.yellow),
+                valueColor: const AlwaysStoppedAnimation<Color>(Colors.yellow),
               ),
             )
         ],

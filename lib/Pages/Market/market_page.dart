@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:virtual_exchange/Pages/Market/Pages/SpotPages/spot_page.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
-
+import 'package:virtual_exchange/app_theme.dart';
 import 'pages/favourite_page.dart';
 
 class MarketPage extends StatefulWidget {
@@ -17,7 +17,7 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
 
   final _pages = [
     const FavouritePage(),
-    const FavouritePage(),
+    const SpotPage(),
     const FavouritePage(),
     const FavouritePage(),
     const FavouritePage(),
@@ -57,15 +57,13 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
               size: size.width / 16.0,
             ),
           ),
-          const SizedBox(
-            width: 4.0,
-          ),
+          const SizedBox(width: 4.0),
         ],
         bottom: TabBar(
           isScrollable: true,
           controller: _tabController,
-          labelColor: const Color(0xFFFFD500),
-          indicatorColor: const Color(0xFFFFD500),
+          labelColor: AppColors.primaryColor,
+          indicatorColor: AppColors.primaryColor,
           unselectedLabelColor: Colors.grey,
           indicatorSize: TabBarIndicatorSize.tab,
           indicatorWeight: 1.75,
@@ -78,55 +76,42 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
             fontWeight: FontWeight.w500,
             fontSize: size.width / 28.0,
           ),
-          tabs: [
-            SizedBox(
-              width: size.width * .2,
-              child: const Tab(
-                text: 'Favourites',
-              ),
-            ),
-            SizedBox(
-              width: size.width * .15,
-              child: const Tab(
-                text: 'Cross',
-              ),
-            ),
-            SizedBox(
-              width: size.width * .15,
-              child: const Tab(
-                text: 'Isolated',
-              ),
-            ),
-            SizedBox(
-              width: size.width * .15,
-              child: const Tab(
-                text: 'Options',
-              ),
-            ),
-            SizedBox(
-              width: size.width * .15,
-              child: const Tab(
-                text: 'BTC',
-              ),
-            ),
-          ],
+          tabs: ["Favourites", "Spot", "Future", "Feed", "Data"]
+              .map((e) => SizedBox(
+                    width: size.width * .15,
+                    child: Tab(
+                      text: e,
+                    ),
+                  ))
+              .toList(),
         ),
         systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
       body: Container(
-        color: Theme.of(context).scaffoldBackgroundColor,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(
+              20,
+            ),
+            topRight: Radius.circular(
+              20,
+            ),
+          ),
+        ),
         child: Column(
           children: [
             const SizedBox(
               height: 2.5,
             ),
-            _buildTopBar(context),
+            // _buildTopBar(context),
             Expanded(
               child: TabBarView(
                 controller: _tabController,
-                children: _pages.map((Widget tab) {
-                  return tab;
-                }).toList(),
+                children: _pages.map(
+                  (Widget tab) {
+                    return tab;
+                  },
+                ).toList(),
               ),
             ),
           ],
@@ -135,61 +120,61 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
     );
   }
 
-  Widget _buildTopBar(context) {
-    final size = MediaQuery.of(context).size;
-    return Container(
-      padding: const EdgeInsets.fromLTRB(6.0, 8.0, 6.0, 8.0),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Text(
-              'Pairs',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Last Price',
-                  style:
-                      Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(width: 4.0),
-                Icon(
-                  FontAwesomeIcons.sort,
-                  color: themeProvider.darkMode ? Colors.white : Colors.black,
-                  size: size.width / 26.0,
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  'Change',
-                  style:
-                      Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(
-                  width: 4.0,
-                ),
-                Icon(
-                  FontAwesomeIcons.sort,
-                  color: themeProvider.darkMode ? Colors.white : Colors.black,
-                  size: size.width / 26.0,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildTopBar(context) {
+  //   final size = MediaQuery.of(context).size;
+  //   return Container(
+  //     padding: const EdgeInsets.fromLTRB(6.0, 8.0, 6.0, 8.0),
+  //     child: Row(
+  //       children: [
+  //         Expanded(
+  //           flex: 2,
+  //           child: Text(
+  //             'Pairs',
+  //             style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
+  //           ),
+  //         ),
+  //         Expanded(
+  //           flex: 1,
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.center,
+  //             children: [
+  //               Text(
+  //                 'Last Price',
+  //                 style:
+  //                     Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
+  //               ),
+  //               const SizedBox(width: 4.0),
+  //               Icon(
+  //                 FontAwesomeIcons.sort,
+  //                 color: themeProvider.darkMode ? Colors.white : Colors.black,
+  //                 size: size.width / 26.0,
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         Expanded(
+  //           flex: 1,
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.end,
+  //             children: [
+  //               Text(
+  //                 'Change',
+  //                 style:
+  //                     Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
+  //               ),
+  //               const SizedBox(
+  //                 width: 4.0,
+  //               ),
+  //               Icon(
+  //                 FontAwesomeIcons.sort,
+  //                 color: themeProvider.darkMode ? Colors.white : Colors.black,
+  //                 size: size.width / 26.0,
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

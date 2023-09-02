@@ -24,7 +24,7 @@ class QrProvider extends ChangeNotifier {
         errorSnack("Invalid QR");
       }
       logger.i(result);
-    } on Exception catch (e) {
+    } on Exception catch (_) {
       errorSnack('Unable to Scan');
     }
   }

@@ -22,29 +22,35 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: onTap,
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith(
-            (states) {
-              return onTap != null
-                  ? (buttonColor ?? AppColors.primaryColor)
-                  : AppColors.primaryColor.withOpacity(.3);
-            },
+      onPressed: onTap,
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (prefix != null) prefix!,
-              Text(
-                title,
-                style: TextStyle(color: titleColor ?? Colors.white),
-              ),
-              if (suffix != null) suffix!,
-            ],
-          ),
-        ));
+        backgroundColor: MaterialStateProperty.resolveWith(
+          (states) {
+            return onTap != null
+                ? (buttonColor ?? AppColors.primaryColor)
+                : AppColors.primaryColor.withOpacity(.3);
+          },
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (prefix != null) prefix!,
+            Text(
+              title,
+              style: TextStyle(color: titleColor ?? Colors.black),
+            ),
+            if (suffix != null) suffix!,
+          ],
+        ),
+      ),
+    );
   }
 }

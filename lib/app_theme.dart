@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:virtual_exchange/Providers/providers.dart';
 
 class AppTheme {
   static final darkTheme = ThemeData(
@@ -41,4 +40,6 @@ class AppColors {
   // static Color scaffoldBackgroundColorDarkMode = const Color(0xFF1e1e1e);
   static Color scaffoldBackgroundColorDarkMode = const Color(0xff22272D);
   static Color primaryColor = const Color(0xFFFFD500);
+  static Color greenColor = const Color(0xff32c17a);
+  static Color redColor = const Color(0xFFFF3232);
 }
