@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:virtual_exchange/Pages/Trades/trading_page.dart';
-import 'package:virtual_exchange/Pages/WalletsPages/wallet_page.dart';
-import 'package:virtual_exchange/Pages/HomePages/home_page.dart';
-import 'package:virtual_exchange/Pages/market/market_page.dart';
+import 'export.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});

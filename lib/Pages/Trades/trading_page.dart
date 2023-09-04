@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:virtual_exchange/Pages/Trades/line_chart.dart';
 import 'package:virtual_exchange/Pages/Trades/widgets/percent_selection.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
 import 'package:virtual_exchange/app_theme.dart';
@@ -12,6 +14,7 @@ import 'package:virtual_exchange/app_theme.dart';
 import 'widgets/buy_or_sell_button.dart';
 import 'widgets/drawer_layout.dart';
 import 'widgets/end_drawer.dart';
+import 'file:///Users/macbookpro/StudioProjects/virtual_exchange/binance_candles_master/lib/export.dart';
 
 class TradingPage extends StatefulWidget {
   const TradingPage({super.key});
@@ -133,7 +136,6 @@ class _TradingPageState extends State<TradingPage> with SingleTickerProviderStat
           icon: Icon(
             Icons.menu,
             color: themeProvider.darkMode ? Colors.grey.shade100 : Colors.black,
-            // size: size.width / 15.0,
           ),
         ),
         title: Text('ETH0107CALLW', style: Theme.of(context).textTheme.bodyLarge),
@@ -146,9 +148,7 @@ class _TradingPageState extends State<TradingPage> with SingleTickerProviderStat
               // size: size.width / 15.0,
             ),
           ),
-          const SizedBox(
-            width: 4.0,
-          ),
+          const SizedBox(width: 4.0),
         ],
         bottom: TabBar(
           isScrollable: true,
@@ -202,9 +202,8 @@ class _TradingPageState extends State<TradingPage> with SingleTickerProviderStat
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 4.0,
-              ),
+              const SizedBox(height: 4.0),
+
               _buildTopBar(context),
               _buildValueOfTopBar(context),
 
@@ -293,43 +292,24 @@ class _TradingPageState extends State<TradingPage> with SingleTickerProviderStat
       padding: const EdgeInsets.fromLTRB(12.0, 8.0, 6.0, 8.0),
       child: Row(
         children: [
-          Expanded(
-            flex: 4,
-            child: Text(
-              'Strike Price',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
+          Text(
+            'BTC/USDT',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+          ).paddingOnly(right: 20),
+          Text(
+            "+0.16%",
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall
+                ?.copyWith(color: AppColors.greenColor, fontWeight: FontWeight.w700),
           ),
-          Expanded(
-            flex: 4,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Spot Price',
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  'Before Expiry',
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-                const SizedBox(width: 4.0),
-                Icon(
-                  FontAwesomeIcons.sortDown,
-                  color: Colors.grey.shade400,
-                  size: size.width / 26.0,
-                ),
-              ],
-            ),
-          ),
+          const Expanded(child: SizedBox()),
+          GestureDetector(
+            onTap: () {
+              Get.to(AppCandelChart());
+            },
+            child: const Icon(Icons.candlestick_chart),
+          )
         ],
       ),
     );
@@ -592,11 +572,11 @@ class _TradingPageState extends State<TradingPage> with SingleTickerProviderStat
               ],
             ),
           ),
-          _buildValuePriceLine(context, '10.1682', '312', const Color(0xFFFF3232)),
-          _buildValuePriceLine(context, '9.4289', '1112', const Color(0xFFFF3232)),
-          _buildValuePriceLine(context, '3.3152', '122', const Color(0xFFFF3232)),
-          _buildValuePriceLine(context, '7.1482', '512', const Color(0xFFFF3232)),
-          _buildValuePriceLine(context, '11.282', '212', const Color(0xFFFF3232)),
+          _buildValuePriceLine(context, '10.1682', '312', AppColors.redColor),
+          _buildValuePriceLine(context, '9.4289', '1112', AppColors.redColor),
+          _buildValuePriceLine(context, '3.3152', '122', AppColors.redColor),
+          _buildValuePriceLine(context, '7.1482', '512', AppColors.redColor),
+          _buildValuePriceLine(context, '11.282', '212', AppColors.redColor),
           Container(
             padding: const EdgeInsets.only(bottom: 16.0, top: 20.0),
             alignment: Alignment.center,
@@ -605,11 +585,11 @@ class _TradingPageState extends State<TradingPage> with SingleTickerProviderStat
               style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
             ),
           ),
-          _buildValuePriceLine(context, '10.1682', '312', const Color(0xFF00FF80)),
-          _buildValuePriceLine(context, '9.4289', '1112', const Color(0xFF00FF80)),
-          _buildValuePriceLine(context, '3.3152', '122', const Color(0xFF00FF80)),
-          _buildValuePriceLine(context, '7.1482', '512', const Color(0xFF00FF80)),
-          _buildValuePriceLine(context, '11.282', '212', const Color(0xFF00FF80)),
+          _buildValuePriceLine(context, '10.1682', '312', AppColors.greenColor),
+          _buildValuePriceLine(context, '9.4289', '1112', AppColors.greenColor),
+          _buildValuePriceLine(context, '3.3152', '122', AppColors.greenColor),
+          _buildValuePriceLine(context, '7.1482', '512', AppColors.greenColor),
+          _buildValuePriceLine(context, '11.282', '212', AppColors.greenColor),
         ],
       ),
     );

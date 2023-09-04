@@ -1,95 +1,90 @@
+// import 'dart:async';
 // import 'package:flutter/material.dart';
 //
 // void main() {
-//   runApp(const MyApp());
+//   runApp(
+//     const MaterialApp(
+//       home: App(),
+//     ),
+//   );
 // }
 //
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
+// class App extends StatefulWidget {
+//   const App({super.key});
 //
 //   @override
-//   Widget build(BuildContext context) {
-//     return const MaterialApp(
-//       home: NestedScrollExample(),
-//     );
+//   State<App> createState() => _AppState();
+// }
+//
+// class _AppState extends State<App> {
+//   double h = 0;
+//   Timer? timer;
+//
+//   void startTimer(bool? reverse) {
+//     timer = Timer.periodic(const Duration(milliseconds: 20), (Timer timer) {
+//       setState(() {
+//         reverse == false ? h++ : h--;
+//       });
+//       print(h);
+//
+//       if (h >= MediaQuery.of(context).size.width / 2) {
+//         this.timer?.cancel();
+//       } else if (h <= 0) {
+//         this.timer?.cancel();
+//       }
+//     });
 //   }
-// }
-//
-// class NestedScrollExample extends StatelessWidget {
-//   const NestedScrollExample({super.key});
 //
 //   @override
 //   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         body: CustomScrollView(
-//           slivers: [
-//             const SliverAppBar(
-//               pinned: true,
-//               title: Text('Nested Scroll Example'),
-//               expandedHeight: 200,
-//               flexibleSpace: FlexibleSpaceBar(),
-//             ),
-//             SliverList(
-//               delegate: SliverChildBuilderDelegate(
-//                 (BuildContext context, int index) {
-//                   return ListTile(title: Text('Book $index'));
-//                 },
-//                 childCount: 10, // Number of books
-//               ),
-//             ),
-//             SliverPersistentHeader(
-//               pinned: true,
-//               delegate: SliverAppBarDelegate(
-//                 minHeight: 50,
-//                 maxHeight: 50,
-//                 child: Container(
-//                   color: Colors.blue,
-//                   alignment: Alignment.center,
-//                   child: const Text('Peoples'),
-//                 ),
-//               ),
-//             ),
-//             SliverList(
-//               delegate: SliverChildBuilderDelegate(
-//                 (BuildContext context, int index) {
-//                   return ListTile(title: Text('Person $index'));
-//                 },
-//                 childCount: 100, // Number of people
-//               ),
-//             ),
+//     return Scaffold(
+//       bottomNavigationBar: ElevatedButton(
+//         onPressed: () {
+//           startTimer(true);
+//         },
+//         child: const Text("Reset"),
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: () {
+//           startTimer(false);
+//         },
+//       ),
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             CircleAvatar(
+//               radius: h,
+//               backgroundColor: Colors.red,
+//               child: h >= 10
+//                   ? CircleAvatar(
+//                       radius: h - 10,
+//                       backgroundColor: Colors.yellow,
+//                       child: h >= 20
+//                           ? CircleAvatar(
+//                               radius: h - 20,
+//                               backgroundColor: Colors.teal,
+//                               child: h >= 30
+//                                   ? CircleAvatar(
+//                                       radius: h - 30,
+//                                       backgroundColor: Colors.brown,
+//                                       child: h >= 40
+//                                           ? CircleAvatar(
+//                                               radius: h - 40,
+//                                               backgroundColor: Colors.white,
+//                                             )
+//                                           : null,
+//                                     )
+//                                   : null,
+//                             )
+//                           : null,
+//                     )
+//                   : null,
+//             )
 //           ],
 //         ),
 //       ),
 //     );
-//   }
-// }
-//
-// class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-//   SliverAppBarDelegate({
-//     required this.minHeight,
-//     required this.maxHeight,
-//     required this.child,
-//   });
-//
-//   final double minHeight;
-//   final double maxHeight;
-//   final Widget child;
-//
-//   @override
-//   double get minExtent => minHeight;
-//   @override
-//   double get maxExtent => maxHeight;
-//
-//   @override
-//   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-//     return SizedBox.expand(child: child);
-//   }
-//
-//   @override
-//   bool shouldRebuild(SliverAppBarDelegate oldDelegate) {
-//     return maxHeight != oldDelegate.maxHeight ||
-//         minHeight != oldDelegate.minHeight ||
-//         child != oldDelegate.child;
 //   }
 // }

@@ -1,260 +1,132 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:virtual_exchange/app_theme.dart';
 
 class LineChartSample2 extends StatefulWidget {
   const LineChartSample2({super.key});
 
   @override
-  State<StatefulWidget> createState() => _LineChartSample2State();
+  State<LineChartSample2> createState() => _LineChartSample2State();
 }
 
 class _LineChartSample2State extends State<LineChartSample2> {
-  DateFormat format = DateFormat('dd/MM');
   List<Color> gradientColors = [
-    const Color(0xff23b6e6),
-    const Color(0xff02d39a),
+    AppColors.primaryColor,
+    AppColors.primaryColor,
   ];
-
-  bool showAvg = false;
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return Stack(
-      children: <Widget>[
-        AspectRatio(
-          aspectRatio: 2.4,
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.transparent,
+    return AspectRatio(
+      aspectRatio: 1,
+      child: LineChart(
+        LineChartData(
+          gridData: const FlGridData(
+            show: false,
+            drawVerticalLine: false,
+            horizontalInterval: 1,
+            verticalInterval: 1,
+          ),
+          titlesData: const FlTitlesData(
+            show: false,
+            rightTitles: AxisTitles(
+              sideTitles: SideTitles(showTitles: false),
             ),
-            child: Padding(
-              padding: const EdgeInsets.only(right: 18.0, left: 12.0, top: 24, bottom: 12),
-              child: LineChart(
-                showAvg ? avgData() : mainData(),
+            topTitles: AxisTitles(
+              sideTitles: SideTitles(showTitles: false),
+            ),
+          ),
+          borderData: FlBorderData(
+            show: false,
+            border: Border.all(color: const Color(0xff37434d)),
+          ),
+          minX: 0,
+          maxX: 20,
+          minY: 0,
+          maxY: 8,
+          lineBarsData: [
+            LineChartBarData(
+              spots: const [
+                FlSpot(0, 3),
+                FlSpot(2.6, 2),
+                FlSpot(4.9, 5),
+                FlSpot(6.8, 3.1),
+                FlSpot(8, 4),
+                FlSpot(9.5, 3),
+                FlSpot(11, 4),
+                FlSpot(12, 4),
+                FlSpot(13, 6),
+                FlSpot(14, 7),
+              ],
+              isCurved: false,
+              gradient: LinearGradient(
+                colors: gradientColors,
+              ),
+              barWidth: 2,
+              isStrokeCapRound: true,
+              dotData: const FlDotData(
+                show: false,
+              ),
+              belowBarData: BarAreaData(
+                show: true,
+                gradient: LinearGradient(
+                  colors: gradientColors.map((color) => color.withOpacity(0.3)).toList(),
+                ),
               ),
             ),
-          ),
+          ],
         ),
-        SizedBox(
-          width: 60,
-          height: 34,
-          child: ElevatedButton(
-            onPressed: () {
-              setState(() {
-                showAvg = !showAvg;
-              });
-            },
-            child: Text(
-              'avg',
-              style: TextStyle(
-                  fontSize: size.width / 30.0,
-                  color: showAvg ? Colors.white.withOpacity(0.5) : Colors.white),
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 
-  LineChartData mainData() {
-    return LineChartData(
-      gridData: FlGridData(
-        show: true,
-        drawVerticalLine: true,
-        getDrawingHorizontalLine: (value) {
-          return FlLine(
-            color: Colors.white10,
-            strokeWidth: .8,
-          );
-        },
-        getDrawingVerticalLine: (value) {
-          return FlLine(
-            color: const Color(0xff37434d),
-            strokeWidth: .8,
-          );
-        },
-      ),
-      titlesData: FlTitlesData(
-        show: true,
-        bottomTitles: SideTitles(
-          showTitles: true,
-          reservedSize: 22,
-          getTextStyles: (value) => const TextStyle(
-            color: Color(0xff68737d),
-            fontWeight: FontWeight.bold,
-            fontSize: 12.0,
-          ),
-          getTitles: (value) {
-            switch (value.toInt()) {
-              case 2:
-                return format.format(DateTime.now().subtract(const Duration(days: 2)));
-              case 5:
-                return format.format(DateTime.now().subtract(const Duration(days: 1)));
-              case 8:
-                return format.format(DateTime.now());
-              default:
-                return '';
-            }
-          },
-          margin: 8,
-        ),
-        leftTitles: SideTitles(
-          showTitles: true,
-          getTextStyles: (value) => const TextStyle(
-            color: Colors.white70,
-            fontWeight: FontWeight.w300,
-            fontSize: 12.0,
-          ),
-          getTitles: (value) {
-            switch (value.toInt()) {
-              case 1:
-                return '9.112';
-              case 3:
-                return '9.115';
-              case 5:
-                return '9.118';
-            }
-            return '';
-          },
-          reservedSize: 28,
-          margin: 12,
-        ),
-      ),
-      borderData:
-          FlBorderData(show: false, border: Border.all(color: const Color(0xff37434d), width: 1)),
-      minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
-      lineBarsData: [
-        LineChartBarData(
-          spots: [
-            FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
-          ],
-          isCurved: true,
-          colors: gradientColors,
-          barWidth: 2.0,
-          isStrokeCapRound: true,
-          dotData: FlDotData(
-            show: false,
-          ),
-          belowBarData: BarAreaData(
-            show: true,
-            colors: gradientColors.map((color) => color.withOpacity(0.3)).toList(),
-          ),
-        ),
-      ],
+  Widget bottomTitleWidgets(double value, TitleMeta meta) {
+    const style = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+    );
+    Widget text;
+    switch (value.toInt()) {
+      case 2:
+        text = const Text('MAR', style: style);
+        break;
+      case 5:
+        text = const Text('JUN', style: style);
+        break;
+      case 8:
+        text = const Text('SEP', style: style);
+        break;
+      default:
+        text = const Text('', style: style);
+        break;
+    }
+
+    return SideTitleWidget(
+      axisSide: meta.axisSide,
+      child: text,
     );
   }
 
-  LineChartData avgData() {
-    return LineChartData(
-      lineTouchData: LineTouchData(enabled: false),
-      gridData: FlGridData(
-        show: true,
-        drawHorizontalLine: true,
-        getDrawingVerticalLine: (value) {
-          return FlLine(
-            color: const Color(0xff37434d),
-            strokeWidth: 1,
-          );
-        },
-        getDrawingHorizontalLine: (value) {
-          return FlLine(
-            color: const Color(0xff37434d),
-            strokeWidth: 1,
-          );
-        },
-      ),
-      titlesData: FlTitlesData(
-        show: true,
-        bottomTitles: SideTitles(
-          showTitles: true,
-          reservedSize: 22,
-          getTextStyles: (value) =>
-              const TextStyle(color: Color(0xff68737d), fontWeight: FontWeight.bold, fontSize: 16),
-          getTitles: (value) {
-            switch (value.toInt()) {
-              case 2:
-                return 'MAR';
-              case 5:
-                return 'JUN';
-              case 8:
-                return 'SEP';
-            }
-            return '';
-          },
-          margin: 8,
-        ),
-        leftTitles: SideTitles(
-          showTitles: true,
-          getTextStyles: (value) => const TextStyle(
-            color: Color(0xff67727d),
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
-          ),
-          getTitles: (value) {
-            switch (value.toInt()) {
-              case 1:
-                return '10k';
-              case 3:
-                return '30k';
-              case 5:
-                return '50k';
-            }
-            return '';
-          },
-          reservedSize: 28,
-          margin: 12,
-        ),
-      ),
-      borderData:
-          FlBorderData(show: true, border: Border.all(color: const Color(0xff37434d), width: 1)),
-      minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
-      lineBarsData: [
-        LineChartBarData(
-          spots: [
-            FlSpot(0, 3.44),
-            FlSpot(2.6, 3.44),
-            FlSpot(4.9, 3.44),
-            FlSpot(6.8, 3.44),
-            FlSpot(8, 3.44),
-            FlSpot(9.5, 3.44),
-            FlSpot(11, 3.44),
-          ],
-          isCurved: true,
-          colors: [
-            ColorTween(begin: gradientColors[0], end: gradientColors[1]).lerp(0.2) ?? Colors.red,
-            ColorTween(begin: gradientColors[0], end: gradientColors[1]).lerp(0.2) ?? Colors.red,
-          ],
-          barWidth: 5,
-          isStrokeCapRound: true,
-          dotData: FlDotData(
-            show: false,
-          ),
-          belowBarData: BarAreaData(show: true, colors: [
-            ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)
-                    ?.withOpacity(0.1) ??
-                Colors.red,
-            ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)
-                    ?.withOpacity(0.1) ??
-                Colors.red,
-          ]),
-        ),
-      ],
+  Widget leftTitleWidgets(double value, TitleMeta meta) {
+    const style = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 15,
     );
+    String text;
+    switch (value.toInt()) {
+      case 1:
+        text = '10K';
+        break;
+      case 3:
+        text = '30k';
+        break;
+      case 5:
+        text = '50k';
+        break;
+      default:
+        return Container();
+    }
+
+    return Text(text, style: style, textAlign: TextAlign.left);
   }
 }

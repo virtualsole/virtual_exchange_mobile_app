@@ -1,4 +1,3 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -69,12 +68,7 @@ class UsdtPages extends StatelessWidget {
   Widget _buildFavouriteCard(context) {
     final size = MediaQuery.of(context).size;
     return GestureDetector(
-      onTap: () {
-        ///
-        ///
-        ///
-        // Get.to(()=>LineChart());
-      },
+      onTap: () {},
       child: Container(
         padding: const EdgeInsets.fromLTRB(6.0, 8.0, 6.0, 8.0),
         child: Row(
@@ -137,16 +131,12 @@ class UsdtPages extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.fromLTRB(16.0, 12.0, 8.0, 12.0),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF00FF80).withOpacity(.15),
+                      color: const Color(0xFF00FF80),
                       borderRadius: BorderRadius.circular(4.0),
                     ),
                     child: Text(
                       '+3.33%',
-                      style: TextStyle(
-                        fontSize: size.width / 30.0,
-                        color: const Color(0xFF00FF80),
-                        fontWeight: FontWeight.w400,
-                      ),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.black),
                     ),
                   ),
                 ],
