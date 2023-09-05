@@ -73,6 +73,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  candlesticks:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "899fa3c18bcb6b050a205c35155c64e31d4918bc"
+      url: "https://github.com/r-mzy47/candlesticks.git"
+    source: git
+    version: "2.1.2"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -796,6 +805,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.1"
+  syncfusion_flutter_charts:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_charts
+      sha256: "9b3087a6b2e06a23ae322123a4cd6a9f06256958eee1aeceda47d043bb2dd794"
+      url: "https://pub.dev"
+    source: hosted
+    version: "22.2.12"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: "9f0a4593f7642b2f106e329734d0e5fc746baf8d0a59495eec586cd0d9ba7d02"
+      url: "https://pub.dev"
+    source: hosted
+    version: "22.2.12"
   synchronized:
     dependency: transitive
     description:
@@ -949,7 +974,7 @@ packages:
     source: hosted
     version: "2.7.1"
   web_socket_channel:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: web_socket_channel
       sha256: d88238e5eac9a42bb43ca4e721edba3c08c6354d4a53063afaa568516217621b

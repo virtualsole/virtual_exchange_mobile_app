@@ -54,8 +54,16 @@ dependencies:
   scan: ^1.6.0
   image_picker: ^1.0.3
   webview_flutter: ^4.2.3
+#   Charts<<<
   animated_text_kit: ^4.2.2
+  candlesticks:
+    git:
+      url: https://github.com/r-mzy47/candlesticks.git
 
+  web_socket_channel:
+  syncfusion_flutter_charts: ^22.2.12
+
+# Charts>>>>
 
 dev_dependencies:
   flutter_test:

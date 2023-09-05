@@ -6,15 +6,14 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:virtual_exchange/Pages/Trades/line_chart.dart';
 import 'package:virtual_exchange/Pages/Trades/widgets/percent_selection.dart';
+import 'package:virtual_exchange/Plugins/BinanceCandle/app_candle_chart.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
 import 'package:virtual_exchange/app_theme.dart';
 
 import 'widgets/buy_or_sell_button.dart';
 import 'widgets/drawer_layout.dart';
 import 'widgets/end_drawer.dart';
-import 'file:///Users/macbookpro/StudioProjects/virtual_exchange/binance_candles_master/lib/export.dart';
 
 class TradingPage extends StatefulWidget {
   const TradingPage({super.key});
@@ -287,7 +286,6 @@ class _TradingPageState extends State<TradingPage> with SingleTickerProviderStat
   }
 
   Widget _buildTopBar(context) {
-    final size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.fromLTRB(12.0, 8.0, 6.0, 8.0),
       child: Row(
@@ -306,7 +304,8 @@ class _TradingPageState extends State<TradingPage> with SingleTickerProviderStat
           const Expanded(child: SizedBox()),
           GestureDetector(
             onTap: () {
-              Get.to(AppCandelChart());
+              /// TODO: ///
+              Get.to(const AppCandleChart());
             },
             child: const Icon(Icons.candlestick_chart),
           )
@@ -333,7 +332,7 @@ class _TradingPageState extends State<TradingPage> with SingleTickerProviderStat
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '1112.24',
+                  '112.24',
                   style:
                       Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),

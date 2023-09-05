@@ -101,7 +101,7 @@ class _SpotPageState extends State<SpotPage> {
               ),
             ),
             const SizedBox(height: 20),
-            Expanded(child: UsdtPages())
+            const Expanded(child: UsdtPages())
           ],
         ),
       ).paddingOnly(top: 30),

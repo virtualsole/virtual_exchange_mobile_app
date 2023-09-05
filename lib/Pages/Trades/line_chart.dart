@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:virtual_exchange/app_theme.dart';
-
-import 'widgets/line_chart.dart';
+import 'package:virtual_exchange/Plugins/BinanceCandle/app_candle_chart.dart';
 
 class LineChart extends StatefulWidget {
   const LineChart({super.key});
@@ -23,7 +20,7 @@ class _LineChartState extends State<LineChart> {
               ),
         ),
       ),
-      body: LineChartSample2(),
+      body: const AppCandleChart(),
     );
   }
 }
