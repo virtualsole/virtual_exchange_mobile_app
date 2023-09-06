@@ -4,7 +4,7 @@ import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/cupertino.dart';
 // import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-import '../../utlis.dart';
+import '../../utils.dart';
 
 class WalletProvider extends ChangeNotifier {
   // final String _address = "0x1779Ae1F8E700Fbf16E7ebfcc27f8C4936fbFDd3";

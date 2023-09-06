@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:virtual_exchange/Pages/Trades/widgets/percent_selection.dart';
 import 'package:virtual_exchange/Plugins/BinanceCandle/app_candle_chart.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
+import 'package:virtual_exchange/Services/HttpServices/api_services.dart';
 import 'package:virtual_exchange/app_theme.dart';
 import 'package:virtual_exchange/extensions.dart';
 
@@ -304,7 +305,10 @@ class _TradingPageState extends State<TradingPage> with SingleTickerProviderStat
           ),
           const Expanded(child: SizedBox()),
           const Icon(Icons.candlestick_chart).onTap(() {
-            Get.to(const AppCandleChart());
+            /// TODO:
+            ///
+            ApiService.getMethod(url: "http://www.google.com/DF");
+            // Get.to(const AppCandleChart());
           })
         ],
       ),

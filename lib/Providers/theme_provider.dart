@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:virtual_exchange/Services/StorageServices/storage_services.dart';
 import 'package:virtual_exchange/app_theme.dart';
-
-import '../Services/storage_services.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeData themeData = AppTheme.darkTheme;

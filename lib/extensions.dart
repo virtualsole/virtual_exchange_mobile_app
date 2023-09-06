@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+/// Box Radius
 extension BoxRadius on BoxDecoration {
   BoxDecoration boxRadius(double radius, Color? color) {
     return BoxDecoration(color: color, borderRadius: BorderRadius.circular(radius));
   }
 }
 
+/// Void CallBack
 extension Listner on Widget {
   Widget onTap(VoidCallback onTap) {
     return GestureDetector(onTap: onTap, child: this);
   }
 }
 
+/// Date Time Stamp parsing
 extension DateToString on DateTime? {
   String toFormattedDate() {
     if (this == null) {
@@ -47,6 +50,7 @@ extension DateToString on DateTime? {
   }
 }
 
+/// Split String
 extension AlphabetSubstring on String? {
   String? get substring15 {
     final cleanedString = this?.replaceAll(RegExp('[^a-zA-Z]'), '');
@@ -58,5 +62,17 @@ extension AlphabetSubstring on String? {
     final cleanedString = this?.replaceAll(RegExp('[^a-zA-Z]'), '');
     if (cleanedString == null) return "";
     return cleanedString.length <= 10 ? cleanedString : "${cleanedString.substring(0, 10)}...";
+  }
+}
+
+/// White Space
+
+extension WhiteSpace on double {
+  Widget verticalSpace() {
+    return SizedBox(height: this);
+  }
+
+  Widget horizontalSpace() {
+    return SizedBox(width: this);
   }
 }

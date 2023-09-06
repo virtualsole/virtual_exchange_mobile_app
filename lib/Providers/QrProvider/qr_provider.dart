@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:scan/scan.dart';
-import 'package:virtual_exchange/utlis.dart';
+import 'package:virtual_exchange/utils.dart';
 
 class QrProvider extends ChangeNotifier {
   final ImagePicker picker = ImagePicker();

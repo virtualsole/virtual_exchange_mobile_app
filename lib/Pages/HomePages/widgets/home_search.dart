@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:virtual_exchange/Data/type_coin.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
-import 'package:virtual_exchange/utlis.dart';
+import 'package:virtual_exchange/utils.dart';
 
 class HomeSearchWidget extends StatelessWidget {
   const HomeSearchWidget({super.key});

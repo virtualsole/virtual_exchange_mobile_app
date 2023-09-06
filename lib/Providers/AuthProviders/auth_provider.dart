@@ -4,11 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:virtual_exchange/Services/HttpServices/api_key.dart';
 import 'package:virtual_exchange/Services/HttpServices/api_services.dart';
 import 'package:virtual_exchange/Services/HttpServices/api_urls.dart';
+import 'package:virtual_exchange/Services/StorageServices/storage_services.dart';
 import 'package:virtual_exchange/Widgets/show_progress.dart';
 import 'package:virtual_exchange/Models/AuthModels/get_user_id_response.dart';
 
-import '../../Services/storage_services.dart';
-import '../../utlis.dart';
+import '../../utils.dart';
 
 class AuthProvider extends ChangeNotifier {
   AppKeys appKeys = AppKeys();

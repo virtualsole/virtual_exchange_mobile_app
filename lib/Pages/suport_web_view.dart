@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
 import 'package:virtual_exchange/app_theme.dart';
-import 'package:virtual_exchange/utlis.dart';
+import 'package:virtual_exchange/utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class SupportWebView extends StatefulWidget {

@@ -2,7 +2,8 @@
 
 import 'package:virtual_exchange/Models/AuthModels/registration_response.dart';
 import 'package:virtual_exchange/Models/AuthModels/user_model.dart';
-import 'package:virtual_exchange/Services/StorageServices/get_storage.dart';
+
+import 'package:virtual_exchange/Services/StorageServices/storage_services.dart';
 import 'package:virtual_exchange/models/AuthModels/user_profile_response.dart';
 
 class AppKeys {
