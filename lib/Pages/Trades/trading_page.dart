@@ -10,6 +10,7 @@ import 'package:virtual_exchange/Pages/Trades/widgets/percent_selection.dart';
 import 'package:virtual_exchange/Plugins/BinanceCandle/app_candle_chart.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
 import 'package:virtual_exchange/app_theme.dart';
+import 'package:virtual_exchange/extensions.dart';
 
 import 'widgets/buy_or_sell_button.dart';
 import 'widgets/drawer_layout.dart';
@@ -302,13 +303,9 @@ class _TradingPageState extends State<TradingPage> with SingleTickerProviderStat
                 ?.copyWith(color: AppColors.greenColor, fontWeight: FontWeight.w700),
           ),
           const Expanded(child: SizedBox()),
-          GestureDetector(
-            onTap: () {
-              /// TODO: ///
-              Get.to(const AppCandleChart());
-            },
-            child: const Icon(Icons.candlestick_chart),
-          )
+          const Icon(Icons.candlestick_chart).onTap(() {
+            Get.to(const AppCandleChart());
+          })
         ],
       ),
     );
