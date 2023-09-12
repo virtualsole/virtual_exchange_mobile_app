@@ -258,7 +258,7 @@ class _HomePageState extends State<HomePage> {
                 percent,
                 style: TextStyle(
                   color: color,
-                  fontSize: size.width / 28.8,
+                  fontSize: size.width / 33.8,
                   fontWeight: FontWeight.w400,
                 ),
               ),
