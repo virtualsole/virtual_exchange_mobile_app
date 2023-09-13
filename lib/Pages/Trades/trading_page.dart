@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:virtual_exchange/Pages/Trades/widgets/percent_selection.dart';
-import 'package:virtual_exchange/Plugins/BinanceCandle/app_candle_chart.dart';
+
 import 'package:virtual_exchange/Providers/providers.dart';
 import 'package:virtual_exchange/Services/HttpServices/api_services.dart';
 import 'package:virtual_exchange/app_theme.dart';

@@ -35,7 +35,7 @@ class AuthProvider extends ChangeNotifier {
       Map<String, String> bodyFields = {'api_key': appKeys.apiKey, 'email': emailCtrl.text};
 
       final response = await ApiService.getMethod(
-        url: ApiUrls.SEND_MAIL_PIN,
+        url: ApiUrls.instance.SEND_MAIL_PIN,
         bodyFields: bodyFields,
       );
       stopProgress();
@@ -66,7 +66,7 @@ class AuthProvider extends ChangeNotifier {
 
     try {
       final response = await ApiService.getMethod(
-        url: ApiUrls.SEND_MAIL,
+        url:ApiUrls.instance.SEND_MAIL,
         bodyFields: {
           'api_key': appKeys.apiKey,
           'email': emailCtrl.text,
@@ -100,7 +100,7 @@ class AuthProvider extends ChangeNotifier {
         'registerType': authType
       };
       final response =
-          await ApiService.getMethod(url: ApiUrls.REGISTER_USER, bodyFields: bodyFields);
+          await ApiService.getMethod(url: ApiUrls.instance.REGISTER_USER, bodyFields: bodyFields);
       logger.i(response);
       stopProgress();
       showMessage(response);
@@ -119,7 +119,7 @@ class AuthProvider extends ChangeNotifier {
   Future<bool> loginUser() async {
     showProgress();
     final response = await ApiService.getMethod(
-      url: ApiUrls.LOGIN_USER,
+      url: ApiUrls.instance.LOGIN_USER,
       bodyFields: {
         'api_key': appKeys.apiKey,
         'email': emailCtrl.text,
@@ -136,7 +136,7 @@ class AuthProvider extends ChangeNotifier {
 
   Future<bool> forgetPassword() async {
     showProgress();
-    final response = await ApiService.postMethod(url: ApiUrls.FORGET_PASSWORD, bodyFields: {
+    final response = await ApiService.postMethod(url: ApiUrls.instance.FORGET_PASSWORD, bodyFields: {
       'api_key': appKeys.apiKey,
       'user_id': getUserIdResponse?.data?.first.userId ?? "",
       'password': passwordCtrl.text,
@@ -157,7 +157,7 @@ class AuthProvider extends ChangeNotifier {
 
   Future<String?> getUserId() async {
     final response = await ApiService.getMethod(
-        url: ApiUrls.GET_USER_ID, bodyFields: {'api_key': appKeys.apiKey, 'email': emailCtrl.text});
+        url: ApiUrls.instance.GET_USER_ID, bodyFields: {'api_key': appKeys.apiKey, 'email': emailCtrl.text});
     if (response.isEmpty) return null;
     getUserIdResponse = getUserIdResponseFromJson(response);
 
@@ -177,7 +177,7 @@ class AuthProvider extends ChangeNotifier {
     }
 
     final response = await ApiService.getMethod(
-      url: ApiUrls.GET_USER_INFO,
+      url: ApiUrls.instance.GET_USER_INFO,
       bodyFields: {'api_key': appKeys.apiKey, "user_id": appKeys.userID!},
     );
     logger.i(response);
@@ -189,7 +189,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<bool> update2fa() async {
-    final response = await ApiService.getMethod(url: ApiUrls.UPDATE_2_FA);
+    final response = await ApiService.getMethod(url: ApiUrls.instance.UPDATE_2_FA);
     if (response.isEmpty) return false;
 
     final jd = json.decode(response);

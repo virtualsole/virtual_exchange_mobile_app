@@ -26,7 +26,7 @@ class ApiService {
         throw Exception("Status Code is not 200");
       }
     } on Exception catch (e) {
-      assert(false, "Status Code is not 200");
+      assert(false, "Status Code is not 200 $e");
       // logger.e(e);
       return "";
     }
