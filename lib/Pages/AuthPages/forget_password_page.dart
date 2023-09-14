@@ -68,7 +68,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               ).paddingOnly(bottom: 5),
               AppFormField(
                 hintText: "Please Enter Your Email",
-                controller: authProvider.emailCtrl,
+                controller: authProvider.authIdCtrl,
                 validator: (String? v) {
                   if (v!.isEmpty) {
                     return "*Required";

@@ -32,6 +32,9 @@ class ImageRes {
   static String filterIcon = "assets/Svg/Filter_Icon.svg";
   static String plusIcon = "assets/Svg/Plus_Icon.svg";
   static String web3Wallet = "assets/Svg/web3_wallet.svg";
+  static String applePng = 'assets/Png/apple.png';
+  static String googlePng = 'assets/Png/google.png';
+
 }
 
 class AppConst {

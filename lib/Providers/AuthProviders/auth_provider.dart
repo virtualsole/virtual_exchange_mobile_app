@@ -1,6 +1,9 @@
 import 'dart:convert';
 
+import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:virtual_exchange/Services/HttpServices/api_key.dart';
 import 'package:virtual_exchange/Services/HttpServices/api_services.dart';
 import 'package:virtual_exchange/Services/HttpServices/api_urls.dart';
@@ -12,9 +15,13 @@ import '../../utils.dart';
 
 class AuthProvider extends ChangeNotifier {
   AppKeys appKeys = AppKeys();
-  TextEditingController emailCtrl = TextEditingController(text: "khuramsalfi5@gmail.com");
+  TextEditingController authIdCtrl =
+      TextEditingController(text: "khuramsalfi5@gmail.com");
+
+  // TextEditingController phoneNumber = TextEditingController(text: "khuramsalfi5@gmail.com");
   TextEditingController passwordCtrl = TextEditingController(text: "12345678");
-  TextEditingController repeatPasswordCtrl = TextEditingController(text: "12345678");
+  TextEditingController repeatPasswordCtrl =
+      TextEditingController(text: "12345678");
   TextEditingController pinCtrl = TextEditingController();
   String authType = "email";
   String reason = "";
@@ -32,7 +39,10 @@ class AuthProvider extends ChangeNotifier {
       showProgress();
     });
     try {
-      Map<String, String> bodyFields = {'api_key': appKeys.apiKey, 'email': emailCtrl.text};
+      Map<String, String> bodyFields = {
+        'api_key': appKeys.apiKey,
+        'email': authIdCtrl.text
+      };
 
       final response = await ApiService.getMethod(
         url: ApiUrls.instance.SEND_MAIL_PIN,
@@ -66,10 +76,10 @@ class AuthProvider extends ChangeNotifier {
 
     try {
       final response = await ApiService.getMethod(
-        url:ApiUrls.instance.SEND_MAIL,
+        url: ApiUrls.instance.SEND_MAIL,
         bodyFields: {
           'api_key': appKeys.apiKey,
-          'email': emailCtrl.text,
+          'email': authIdCtrl.text,
           'user_id': res,
           'reason': reason,
         },
@@ -94,13 +104,13 @@ class AuthProvider extends ChangeNotifier {
     try {
       Map<String, String> bodyFields = {
         'api_key': appKeys.apiKey,
-        'email': emailCtrl.text,
+        'email': authIdCtrl.text,
         'password': passwordCtrl.text,
         'pin': pinCtrl.text,
         'registerType': authType
       };
-      final response =
-          await ApiService.getMethod(url: ApiUrls.instance.REGISTER_USER, bodyFields: bodyFields);
+      final response = await ApiService.getMethod(
+          url: ApiUrls.instance.REGISTER_USER, bodyFields: bodyFields);
       logger.i(response);
       stopProgress();
       showMessage(response);
@@ -122,7 +132,7 @@ class AuthProvider extends ChangeNotifier {
       url: ApiUrls.instance.LOGIN_USER,
       bodyFields: {
         'api_key': appKeys.apiKey,
-        'email': emailCtrl.text,
+        'email': authIdCtrl.text,
         'password': passwordCtrl.text,
         'searchType': authType,
         'pin': pinCtrl.text,
@@ -136,11 +146,13 @@ class AuthProvider extends ChangeNotifier {
 
   Future<bool> forgetPassword() async {
     showProgress();
-    final response = await ApiService.postMethod(url: ApiUrls.instance.FORGET_PASSWORD, bodyFields: {
-      'api_key': appKeys.apiKey,
-      'user_id': getUserIdResponse?.data?.first.userId ?? "",
-      'password': passwordCtrl.text,
-    });
+    final response = await ApiService.postMethod(
+        url: ApiUrls.instance.FORGET_PASSWORD,
+        bodyFields: {
+          'api_key': appKeys.apiKey,
+          'user_id': getUserIdResponse?.data?.first.userId ?? "",
+          'password': passwordCtrl.text,
+        });
     logger.i(response);
 
     stopProgress();
@@ -157,7 +169,8 @@ class AuthProvider extends ChangeNotifier {
 
   Future<String?> getUserId() async {
     final response = await ApiService.getMethod(
-        url: ApiUrls.instance.GET_USER_ID, bodyFields: {'api_key': appKeys.apiKey, 'email': emailCtrl.text});
+        url: ApiUrls.instance.GET_USER_ID,
+        bodyFields: {'api_key': appKeys.apiKey, 'email': authIdCtrl.text});
     if (response.isEmpty) return null;
     getUserIdResponse = getUserIdResponseFromJson(response);
 
@@ -189,7 +202,8 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<bool> update2fa() async {
-    final response = await ApiService.getMethod(url: ApiUrls.instance.UPDATE_2_FA);
+    final response =
+        await ApiService.getMethod(url: ApiUrls.instance.UPDATE_2_FA);
     if (response.isEmpty) return false;
 
     final jd = json.decode(response);
@@ -204,5 +218,17 @@ class AuthProvider extends ChangeNotifier {
     // emailCtrl.clear();
     // passwordCtrl.clear();
     // repeatPasswordCtrl.clear();
+  }
+  UserCredential? userCredential;
+  Future<void> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    userCredential= await FirebaseAuth.instance.signInWithCredential(credential);
+    logger.i(userCredential);
   }
 }

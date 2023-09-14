@@ -87,7 +87,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ).paddingOnly(bottom: 5),
                   AppFormField(
                     hintText: "Please Enter Your Email",
-                    controller: value.emailCtrl,
+                    controller: value.authIdCtrl,
                     validator: (String? value) {
                       if (value!.isEmpty) {
                         return "*Required";
