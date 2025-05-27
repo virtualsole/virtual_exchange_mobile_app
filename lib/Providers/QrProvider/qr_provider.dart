@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:scan/scan.dart';
+// import 'package:scan/scan.dart';
 import 'package:virtual_exchange/utils.dart';
 
 class QrProvider extends ChangeNotifier {
@@ -19,11 +19,11 @@ class QrProvider extends ChangeNotifier {
 
   void getQrCodeFromGallery() async {
     try {
-      String? result = await Scan.parse(imageFile!.path);
-      if (result == null) {
-        errorSnack("Invalid QR");
-      }
-      logger.i(result);
+      // String? result = await Scan.parse(imageFile!.path);
+      // if (result == null) {
+      //   errorSnack("Invalid QR");
+      // }
+      // logger.i(result);
     } on Exception catch (_) {
       errorSnack('Unable to Scan');
     }

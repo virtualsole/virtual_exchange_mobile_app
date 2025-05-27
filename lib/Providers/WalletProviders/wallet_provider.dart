@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:external_app_launcher/external_app_launcher.dart';
+// import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/cupertino.dart';
 // import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
@@ -28,28 +28,28 @@ class WalletProvider extends ChangeNotifier {
   }
 
   void launchMetaMask() async {
-    bool? res = await LaunchApp.isAppInstalled(
-        androidPackageName: 'io.metamask', iosUrlScheme: 'pulsesecure://');
-    logger.i(res);
-    if (res == true) {
-      int value = await LaunchApp.openApp(
-        androidPackageName: 'io.metamask',
-        iosUrlScheme: 'pulsesecure://',
-        appStoreLink: 'itms-apps://itunes.apple.com/us/app/pulse-secure/id1438144202',
-      );
-      logger.i(value);
-    } else {
-      if (Platform.isAndroid || Platform.isIOS) {
-        final appId = Platform.isAndroid ? 'io.metamask' : '1438144202';
-        final url = Uri.parse(
-          Platform.isAndroid ? "market://details?id=$appId" : "https://apps.apple.com/app/id$appId",
-        );
-        launchUrl(
-          url,
-          mode: LaunchMode.externalApplication,
-        );
-      }
-    }
+    // bool? res = await LaunchApp.isAppInstalled(
+    //     androidPackageName: 'io.metamask', iosUrlScheme: 'pulsesecure://');
+    // logger.i(res);
+    // if (res == true) {
+    //   int value = await LaunchApp.openApp(
+    //     androidPackageName: 'io.metamask',
+    //     iosUrlScheme: 'pulsesecure://',
+    //     appStoreLink: 'itms-apps://itunes.apple.com/us/app/pulse-secure/id1438144202',
+    //   );
+    //   logger.i(value);
+    // } else {
+    //   if (Platform.isAndroid || Platform.isIOS) {
+    //     final appId = Platform.isAndroid ? 'io.metamask' : '1438144202';
+    //     final url = Uri.parse(
+    //       Platform.isAndroid ? "market://details?id=$appId" : "https://apps.apple.com/app/id$appId",
+    //     );
+    //     launchUrl(
+    //       url,
+    //       mode: LaunchMode.externalApplication,
+    //     );
+    //   }
+    // }
   }
 }
 

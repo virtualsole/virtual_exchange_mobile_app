@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'dart:io';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
 import 'package:virtual_exchange/Services/HttpServices/api_key.dart';
 import 'package:virtual_exchange/Services/HttpServices/api_services.dart';
 import 'package:virtual_exchange/Services/HttpServices/api_urls.dart';
@@ -219,16 +219,16 @@ class AuthProvider extends ChangeNotifier {
     // passwordCtrl.clear();
     // repeatPasswordCtrl.clear();
   }
-  UserCredential? userCredential;
+  // UserCredential? userCredential;
   Future<void> signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-    userCredential= await FirebaseAuth.instance.signInWithCredential(credential);
-    logger.i(userCredential);
+    // final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    // final GoogleSignInAuthentication? googleAuth =
+    //     await googleUser?.authentication;
+    // final credential = GoogleAuthProvider.credential(
+    //   accessToken: googleAuth?.accessToken,
+    //   idToken: googleAuth?.idToken,
+    // );
+    // userCredential= await FirebaseAuth.instance.signInWithCredential(credential);
+    // logger.i(userCredential);
   }
 }

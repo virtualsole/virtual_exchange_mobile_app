@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scan/scan.dart';
+// import 'package:scan/scan.dart';
 import 'package:virtual_exchange/Providers/providers.dart';
 
 class QRViewPage extends StatefulWidget {
@@ -13,10 +13,10 @@ class QRViewPage extends StatefulWidget {
 
 class _QRViewPageState extends State<QRViewPage> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  ScanController controller = ScanController();
+  // ScanController controller = ScanController();
   @override
   void dispose() {
-    controller.pause();
+    // controller.pause();
     super.dispose();
   }
 
@@ -34,14 +34,13 @@ class _QRViewPageState extends State<QRViewPage> {
           SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            child: ScanView(
-              controller: controller,
-              scanAreaScale: .7,
-              scanLineColor: Colors.green.shade400,
-              onCapture: (data) {
-                // do something
-              },
-            ),
+            // child: ScanView(
+            //   controller: controller,
+            //   scanAreaScale: .7,
+            //   scanLineColor: Colors.green.shade400,
+            //   onCapture: (data) {
+              // },
+            // ),
           ),
           Positioned(
             bottom: 0,
@@ -65,7 +64,7 @@ class _QRViewPageState extends State<QRViewPage> {
                             backgroundColor: Colors.grey.withOpacity(.5),
                             child: IconButton(
                                 onPressed: () async {
-                                  controller.toggleTorchMode();
+                                  // controller.toggleTorchMode();
                                   setState(() {});
                                 },
                                 icon: const Icon(Icons.flash_on)),
